@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobji Haat - Fresh Vegetables & Groceries</title>
+    
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* CSS Variables for Theme Colors */
         :root {
@@ -99,21 +103,15 @@
         }
         
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
-            overflow: hidden;
-        }
-        
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
         
         .header-actions {
@@ -192,75 +190,6 @@
             color: var(--primary-color);
         }
         
-        /* Search Bar */
-        .search-container {
-            display: flex;
-            align-items: center;
-            background: var(--bg-color);
-            border-radius: 8px;
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            flex: 1;
-            max-width: 400px;
-            margin: 0 1rem;
-            position: relative;
-        }
-        
-        .search-container input {
-            border: none;
-            background: transparent;
-            padding: 0.5rem;
-            flex: 1;
-            color: var(--text-color);
-            font-size: 1rem;
-        }
-        
-        .search-container input:focus {
-            outline: none;
-        }
-        
-        .search-container button {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-        }
-        
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-top: 5px;
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            max-height: 200px;
-            overflow-y: auto;
-            display: none;
-        }
-        
-        .search-suggestions.active {
-            display: block;
-        }
-        
-        .suggestion-item {
-            padding: 0.75rem 1rem;
-            cursor: pointer;
-            border-bottom: 1px solid var(--border-color);
-            transition: var(--transition);
-        }
-        
-        .suggestion-item:hover {
-            background-color: var(--surface-color);
-        }
-        
-        .suggestion-item:last-child {
-            border-bottom: none;
-        }
-        
         /* Mobile Navigation */
         @media (max-width: 768px) {
             .hamburger {
@@ -280,7 +209,6 @@
                 box-shadow: var(--shadow-lg);
                 transition: right 0.3s ease;
                 align-items: flex-start;
-                overflow-y: auto;
             }
             
             .nav.active {
@@ -292,208 +220,152 @@
                 padding: 1rem 0;
                 border-bottom: 1px solid var(--border-color);
             }
-            
-            /* Hide all header actions except hamburger on mobile */
-            .header-actions .icon-btn:not(#hamburger) {
-                display: none;
-            }
-            
-            /* Show them in mobile menu */
-            .mobile-actions {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-                margin-top: 2rem;
-                padding-top: 2rem;
-                border-top: 1px solid var(--border-color);
-            }
-            
-            .mobile-actions .icon-btn {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem;
-                border-radius: 8px;
-                background: var(--bg-color);
-            }
-            
-            .mobile-actions .icon-btn span {
-                font-size: 1.1rem;
-            }
-            
-            .theme-toggle-container, .language-toggle-container {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                padding: 1rem;
-                background: var(--bg-color);
-                border-radius: 8px;
-                margin-bottom: 1rem;
-            }
-            
-            .toggle-label {
-                flex: 1;
-                font-weight: 500;
-            }
-            
-            .toggle-switch {
-                position: relative;
-                width: 50px;
-                height: 24px;
-                background: var(--border-color);
-                border-radius: 12px;
-                transition: var(--transition);
-            }
-            
-            .toggle-switch::after {
-                content: '';
-                position: absolute;
-                width: 20px;
-                height: 20px;
-                background: white;
-                border-radius: 50%;
-                top: 2px;
-                left: 2px;
-                transition: var(--transition);
-            }
-            
-            .toggle-switch.active {
-                background: var(--primary-color);
-            }
-            
-            .toggle-switch.active::after {
-                left: 28px;
-            }
         }
         
-        /* Desktop - hide mobile elements */
-        @media (min-width: 769px) {
-            .mobile-actions,
-            .theme-toggle-container,
-            .language-toggle-container {
-                display: none;
-            }
-        }
-        
-        /* Hero Slider */
-        .hero-slider {
+        /* Hero Section */
+        .hero {
             margin-top: 70px;
-            position: relative;
-            height: 60vh;
-            overflow: hidden;
-        }
-        
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
+            padding: 4rem 1rem;
+            text-align: center;
         }
         
-        .slide.active {
-            opacity: 1;
-        }
-        
-        .slide-content {
-            background: rgba(0, 0, 0, 0.6);
-            padding: 2rem;
-            border-radius: 12px;
-            max-width: 600px;
-        }
-        
-        .slide h1 {
+        .hero h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
         
-        .slide p {
+        .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            opacity: 0.95;
         }
         
-        .slider-nav {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
             transition: var(--transition);
+            display: inline-block;
         }
         
-        .slider-dot.active {
-            background: white;
-            transform: scale(1.2);
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
         
-        /* Categories Section */
-        .categories-section {
-            padding: 3rem 1rem;
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid white;
+        }
+        
+        /* Carousel */
+        .carousel-section {
+            padding: 2rem 1rem;
             background-color: var(--surface-color);
+            overflow: hidden;
         }
         
-        .categories-container {
+        .carousel-container {
             max-width: 1400px;
             margin: 0 auto;
+            position: relative;
         }
         
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        .carousel-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .carousel-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carousel-track {
+            display: flex;
             gap: 1.5rem;
-            margin-top: 2rem;
+            animation: scroll 30s linear infinite;
+            width: max-content;
         }
         
-        .category-card {
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .carousel-card {
+            min-width: 300px;
             background-color: var(--bg-color);
             border-radius: 12px;
-            padding: 1.5rem;
-            text-align: center;
             box-shadow: var(--shadow);
+            padding: 1.5rem;
             transition: var(--transition);
-            cursor: pointer;
         }
         
-        .category-card:hover {
+        .carousel-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
         }
         
-        .category-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1rem;
-            border-radius: 50%;
-            overflow: hidden;
+        .carousel-card.offer {
+            background: linear-gradient(135deg, var(--accent-color), #ff9500);
+            color: white;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            background: var(--primary-color);
+            align-items: center;
+            text-align: center;
+            min-height: 250px;
         }
         
-        .category-icon img {
+        .carousel-card.offer h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .carousel-card.offer p {
+            font-size: 1.1rem;
+        }
+        
+        .carousel-card img {
             width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .carousel-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .carousel-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .carousel-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
         }
         
         /* Products Section */
@@ -508,28 +380,6 @@
             font-size: 2rem;
             margin-bottom: 3rem;
             color: var(--primary-color);
-        }
-        
-        .filter-sort-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        
-        .filter-group, .sort-group {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .filter-group select, .sort-group select {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
         }
         
         .products-grid {
@@ -557,6 +407,7 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
         }
         
         .product-name {
@@ -623,33 +474,6 @@
         
         .add-to-cart-btn:hover {
             background-color: var(--primary-hover);
-        }
-        
-        /* Sticky WhatsApp Button */
-        .whatsapp-sticky {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            transition: var(--transition);
-        }
-        
-        .whatsapp-sticky:hover {
-            transform: scale(1.1);
-        }
-        
-        .whatsapp-sticky svg {
-            width: 35px;
-            height: 35px;
-            fill: white;
         }
         
         /* Cart Modal */
@@ -962,18 +786,28 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: var(--primary-color);
-            color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
             transition: var(--transition);
+            color: white;
+        }
+        
+        .social-btn.instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+        
+        .social-btn.facebook {
+            background-color: #1877F2;
+        }
+        
+        .social-btn.whatsapp {
+            background-color: #25D366;
         }
         
         .social-btn:hover {
             transform: scale(1.1);
-            background-color: var(--primary-hover);
         }
         
         .footer-bottom {
@@ -1020,7 +854,6 @@
             display: flex;
             gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
         }
         
         .popup-buttons button {
@@ -1060,20 +893,16 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
-            .hero-slider {
-                height: 50vh;
-            }
-            
-            .slide h1 {
+            .hero h1 {
                 font-size: 2rem;
             }
             
-            .slide p {
+            .hero p {
                 font-size: 1rem;
             }
             
-            .categories-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            .carousel-card {
+                min-width: 250px;
             }
             
             .products-grid {
@@ -1083,25 +912,6 @@
             
             .section-title {
                 font-size: 1.5rem;
-            }
-            
-            .filter-sort-container {
-                flex-direction: column;
-            }
-            
-            /* Mobile header layout */
-            .header-container {
-                padding: 0.75rem 1rem;
-            }
-            
-            .logo span {
-                display: none;
-            }
-            
-            .search-container {
-                margin: 0 0.5rem;
-                max-width: none;
-                flex: 1;
             }
         }
         
@@ -1124,49 +934,16 @@
     <header class="header">
         <div class="header-container">
             <a href="#" class="logo">
-                <div class="logo-icon">
-                    <img src="https://i.imgur.com/39e28d54.png" alt="Sobji Haat Logo">
-                </div>
-                <span data-en="SOBJIHAT" data-bn="SOBJIHAT">SOBJIHAT</span>
+                <div class="logo-icon">🌿</div>
+                <span data-en="Sobji Haat" data-bn="Sobji Haat">Sobji Haat</span>
             </a>
-            
-            <div class="search-container">
-                <input type="text" placeholder="Search for vegetables..." id="searchInput">
-                <button id="searchBtn">Search</button>
-                <div class="search-suggestions" id="searchSuggestions">
-                    <!-- Search suggestions will be populated by JavaScript -->
-                </div>
-            </div>
             
             <nav class="nav" id="nav">
                 <a href="#" data-en="Home" data-bn="Bari">Home</a>
                 <a href="#products" data-en="Products" data-bn="Pণyo">Products</a>
-                <a href="#categories" data-en="Categories" data-bn="Categories">Categories</a>
+                <a href="#offer" data-en="Offer" data-bn="Offer">Offer</a>
                 <a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a>
-                
-                <!-- Mobile-only actions -->
-                <div class="mobile-actions">
-                    <div class="theme-toggle-container">
-                        <span class="toggle-label" data-en="Dark Mode" data-bn="Dark Mode">Dark Mode</span>
-                        <div class="toggle-switch" id="mobileThemeToggle"></div>
-                    </div>
-                    
-                    <div class="language-toggle-container">
-                        <span class="toggle-label" data-en="Language" data-bn="Language">Language</span>
-                        <div class="toggle-switch" id="mobileLangToggle"></div>
-                    </div>
-                    
-                    <button class="icon-btn" id="mobileCartBtn">
-                        <span>🛒</span>
-                        <span data-en="Cart" data-bn="Gacha">Cart</span>
-                        <span class="cart-badge" id="mobileCartBadge">0</span>
-                    </button>
-                    
-                    <a href="https://wa.me/919051410591" class="icon-btn" target="_blank">
-                        <span>💬</span>
-                        <span data-en="WhatsApp" data-bn="WhatsApp">WhatsApp</span>
-                    </a>
-                </div>
+                <a href="#map" data-en="Map/Review" data-bn="Map/Review">Map/Review</a>
             </nav>
             
             <div class="header-actions">
@@ -1176,8 +953,14 @@
                 <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
                     🌙
                 </button>
+                <a href="tel:+919051410591" class="icon-btn" aria-label="Call Us" title="Call Us">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <button class="icon-btn" id="whatsappBtn" aria-label="WhatsApp" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
                 <button class="icon-btn" id="cartBtn" aria-label="Shopping Cart" title="Shopping Cart">
-                    🛒
+                    <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </button>
                 <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -1189,42 +972,26 @@
         </div>
     </header>
 
-    <!-- Hero Slider -->
-    <section class="hero-slider" id="home">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-            <div class="slide-content">
-                <h1 data-en="Fresh Vegetables Delivered Daily" data-bn="Roj Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</h1>
-                <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms to your doorstep</p>
-                <button class="btn" id="shopNowBtn" data-en="Shop Now" data-bn="Kinte Cholo">Shop Now</button>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80');">
-            <div class="slide-content">
-                <h1 data-en="Organic & Daily Fresh" data-bn="Organic & Daily Fresh">Organic & Daily Fresh</h1>
-                <p data-en="Get the freshest organic vegetables at your doorstep" data-bn="Apnar dwarei paun taja organic sobji">Get the freshest organic vegetables at your doorstep</p>
-                <button class="btn" id="shopNowBtn2" data-en="Browse Products" data-bn="Ponyo Dekho">Browse Products</button>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
-            <div class="slide-content">
-                <h1 data-en="Special Offers Every Week" data-bn="Proti Soptaho Special Offer">Special Offers Every Week</h1>
-                <p data-en="Enjoy discounts on your favorite vegetables" data-bn="Apnar pochondo sobji te paun chhad">Enjoy discounts on your favorite vegetables</p>
-                <button class="btn" id="shopNowBtn3" data-en="View Offers" data-bn="Offer Dekho">View Offers</button>
-            </div>
-        </div>
-        <div class="slider-nav">
-            <div class="slider-dot active"></div>
-            <div class="slider-dot"></div>
-            <div class="slider-dot"></div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1 data-en="Fresh Vegetables Delivered Daily" data-bn="Roj Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</h1>
+        <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms to your doorstep</p>
+        <button class="btn" id="shopNowBtn" data-en="Shop Now" data-bn="Kinte Cholo">Shop Now</button>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories-section" id="categories">
-        <div class="categories-container">
-            <h2 class="section-title" data-en="Shop by Categories" data-bn="Categories Anujayi Keno">Shop by Categories</h2>
-            <div class="categories-grid" id="categoriesGrid">
-                <!-- Categories will be populated by JavaScript -->
+    <!-- Carousel Section -->
+    <section class="carousel-section" id="offer">
+        <div class="carousel-container">
+            <h2 class="carousel-title" data-en="Special Offers & Featured Products" data-bn="Bikhyato Offer ar Ponyo">Special Offers & Featured Products</h2>
+            <div class="carousel-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Offer Card -->
+                    <div class="carousel-card offer">
+                        <h3 data-en="5% OFF" data-bn="5% Chhad">5% OFF</h3>
+                        <p data-en="Leave a Google Review & Get 5% Discount!" data-bn="Google Review din aar 5% Chhad pan!">Leave a Google Review & Get 5% Discount!</p>
+                    </div>
+                    <!-- Carousel will be populated by JavaScript -->
+                </div>
             </div>
         </div>
     </section>
@@ -1232,25 +999,6 @@
     <!-- Products Section -->
     <section class="products-section" id="products">
         <h2 class="section-title" data-en="Our Fresh Products" data-bn="Amader Taja Ponyo">Our Fresh Products</h2>
-        
-        <div class="filter-sort-container">
-            <div class="filter-group">
-                <label for="categoryFilter" data-en="Filter by:" data-bn="Filter:">Filter by:</label>
-                <select id="categoryFilter">
-                    <option value="all" data-en="All Categories" data-bn="Sob Categories">All Categories</option>
-                    <!-- Categories will be populated by JavaScript -->
-                </select>
-            </div>
-            <div class="sort-group">
-                <label for="sortBy" data-en="Sort by:" data-bn="Sort:">Sort by:</label>
-                <select id="sortBy">
-                    <option value="name" data-en="Name" data-bn="Naam">Name</option>
-                    <option value="price-low" data-en="Price: Low to High" data-bn="Dam: Kom theke Beshi">Price: Low to High</option>
-                    <option value="price-high" data-en="Price: High to Low" data-bn="Dam: Beshi theke Kom">Price: High to Low</option>
-                </select>
-            </div>
-        </div>
-        
         <div class="products-grid" id="productsGrid">
             <!-- Products will be populated by JavaScript -->
         </div>
@@ -1286,8 +1034,15 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=seyxfz6" target="_blank" class="social-btn" aria-label="Instagram">📷</a>
-                        <a href="https://www.facebook.com/sobjihaat?mibextid=ZbWKwL" target="_blank" class="social-btn" aria-label="Facebook">👍</a>
+                        <a href="https://www.instagram.com/invites/contact/?utm_source=ig_contact_invite&utm_medium=copy_link&utm_content=seyxfz6" target="_blank" class="social-btn instagram" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sobjihaat?mibextid=ZbWKwL" target="_blank" class="social-btn facebook" aria-label="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://wa.me/919051410591" target="_blank" class="social-btn whatsapp" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
                 
@@ -1308,14 +1063,14 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-section">
-                <h3>SOBJIHAT</h3>
-                <p data-en="Organic & Daily Fresh" data-bn="Organic & Daily Fresh">Organic & Daily Fresh</p>
+                <h3>Sobji Haat</h3>
+                <p data-en="Fresh vegetables delivered daily to your doorstep" data-bn="Roj taja sobji apnar ghore">Fresh vegetables delivered daily to your doorstep</p>
             </div>
             
             <div class="footer-section">
                 <h3 data-en="Quick Links" data-bn="Joldi Links">Quick Links</h3>
                 <p><a href="#products" data-en="Products" data-bn="Ponyo">Products</a></p>
-                <p><a href="#categories" data-en="Categories" data-bn="Categories">Categories</a></p>
+                <p><a href="#offer" data-en="Offers" data-bn="Offer">Offers</a></p>
                 <p><a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a></p>
             </div>
             
@@ -1331,13 +1086,6 @@
             <p><small data-en="💡 Get 5% off with a Google Review!" data-bn="💡 Google Review diye 5% chhad pan!">💡 Get 5% off with a Google Review!</small></p>
         </div>
     </footer>
-
-    <!-- Sticky WhatsApp Button -->
-    <a href="https://wa.me/919051410591" class="whatsapp-sticky" target="_blank" aria-label="Contact on WhatsApp">
-        <svg viewBox="0 0 32 32">
-            <path d=" M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.143-.73-2.09-.832-2.335-.143-.372-.214-.487-.6-.487-.187 0-.36-.043-.53-.043-.302 0-.53.115-.746.315-.688.645-1.032 1.318-1.06 2.264v.114c-.015.99.472 1.977 1.017 2.78 1.23 1.82 2.506 3.41 4.554 4.34.616.287 2.035.888 2.722.888.817 0 2.15-.515 2.478-1.318.13-.33.244-.73.244-1.088 0-.058 0-.144-.03-.215-.1-.172-2.434-1.39-2.678-1.39zm-2.908 7.593c-1.747 0-3.48-.53-4.942-1.49L7.793 24.41l1.132-3.337a8.955 8.955 0 0 1-1.72-5.272c0-4.955 4.04-8.995 8.997-8.995S25.2 10.845 25.2 15.8c0 4.958-4.04 8.998-8.998 8.998zm0-19.798c-5.96 0-10.8 4.842-10.8 10.8 0 1.964.53 3.898 1.546 5.574L5 27.176l5.974-1.92a10.807 10.807 0 0 0 16.03-9.455c0-5.958-4.842-10.8-10.802-10.8z" fill-rule="evenodd"></path>
-        </svg>
-    </a>
 
     <!-- Cart Modal -->
     <div class="modal" id="cartModal" role="dialog" aria-labelledby="cartTitle" aria-modal="true">
@@ -1389,8 +1137,7 @@
                         <!-- Summary will be populated by JavaScript -->
                     </div>
                     
-                    <button type="submit" class="checkout-btn" data-en="Confirm Order" data-bn="Order Confirm Korun">Confirm Order</button>
-                    <button type="button" class="btn btn-secondary mt-2" id="whatsappCheckout" data-en="Send Order via WhatsApp" data-bn="WhatsApp e Order Pathao">Send Order via WhatsApp</button>
+                    <button type="button" class="checkout-btn" id="whatsappCheckoutBtn" data-en="Confirm Order via WhatsApp" data-bn="WhatsApp e Order Confirm Korun">Confirm Order via WhatsApp</button>
                 </form>
             </div>
         </div>
@@ -1431,14 +1178,6 @@
             '2kg': { label: '2 kg', weight: 2 }
         };
         
-        // Categories
-        const categories = [
-            { id: 'leafy', name: 'Leafy Vegetables', nameBn: 'Pata Sobji', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80' },
-            { id: 'root', name: 'Root Vegetables', nameBn: 'Mool Sobji', image: 'https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80' },
-            { id: 'fruit', name: 'Fruit Vegetables', nameBn: 'Fol Sobji', image: 'https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80' },
-            { id: 'spices', name: 'Spices & Herbs', nameBn: 'Mosla ar Gachpata', image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80' }
-        ];
-        
         // Product Database
         const products = [
             {
@@ -1448,8 +1187,7 @@
                 description: 'Fragrant citrus used for flavoring and chutneys',
                 descriptionBn: 'Gondho-wala lebu, chutney ar khete bhalo',
                 price: 80,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1611080623166-c56ce3c23964?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f4e04d" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="80" ry="100" fill="%23ffed4e"/%3E%3Cellipse cx="185" cy="135" rx="60" ry="75" fill="%23fff566"/%3E%3Ctext x="200" y="160" font-size="24" text-anchor="middle" fill="%23666"%3E🍋 Gondhoraj%3C/text%3E%3C/svg%3E',
                 alt: 'Gondhoraj Lemon - Sobji Haat'
             },
             {
@@ -1459,8 +1197,7 @@
                 description: 'Whole mature coconut for cooking and milk',
                 descriptionBn: 'Boro narkol, ranna ar dudh er jonno',
                 price: 40,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1621856366547-58e0d8fe5b44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23d4a574" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="90" fill="%23a67c52"/%3E%3Ccircle cx="200" cy="150" r="70" fill="%23c9a277"/%3E%3Ctext x="200" y="160" font-size="24" text-anchor="middle" fill="%23fff"%3E🥥 Coconut%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Coconut - Sobji Haat'
             },
             {
@@ -1470,8 +1207,7 @@
                 description: 'Clean, food-grade banana leaves for serving',
                 descriptionBn: 'Porishkar kolar pata, khabar debar jonno',
                 price: 20,
-                category: 'leafy',
-                image: 'https://images.unsplash.com/photo-1615485925600-97237c5f2b5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2390ee90" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="150" ry="80" fill="%2352b788"/%3E%3Cpath d="M 200 150 Q 120 120 100 150 Q 120 180 200 150" fill="%2374c69d"/%3E%3Ctext x="200" y="160" font-size="20" text-anchor="middle" fill="%23fff"%3E🍃 Banana Leaf%3C/text%3E%3C/svg%3E',
                 alt: 'Banana Leaf - Sobji Haat'
             },
             {
@@ -1481,8 +1217,7 @@
                 description: 'Spicy green chilies for cooking',
                 descriptionBn: 'Jhaal kacha lonka, ranna jonno',
                 price: 60,
-                category: 'spices',
-                image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%236b8e23" width="400" height="300"/%3E%3Cpath d="M 180 80 Q 185 110 190 140 Q 195 170 200 200 Q 205 170 210 140 Q 215 110 220 80" fill="%2352b788" stroke="%232d6a4f" stroke-width="2"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3E🌶️ Green Chilli%3C/text%3E%3C/svg%3E',
                 alt: 'Green Chilli - Sobji Haat'
             },
             {
@@ -1492,8 +1227,7 @@
                 description: 'Crunchy bell pepper, assorted colors',
                 descriptionBn: 'Misti capsicum, nana rong',
                 price: 70,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ffa500" width="400" height="300"/%3E%3Crect x="140" y="100" width="120" height="130" rx="20" fill="%23ff6347"/%3E%3Crect x="160" y="85" width="80" height="20" rx="10" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🫑 Capsicum%3C/text%3E%3C/svg%3E',
                 alt: 'Capsicum Bell Pepper - Sobji Haat'
             },
             {
@@ -1503,8 +1237,7 @@
                 description: 'Fresh cilantro/coriander leaves',
                 descriptionBn: 'Taja dhone pata',
                 price: 30,
-                category: 'spices',
-                image: 'https://images.unsplash.com/photo-1598179265051-22d96f6d3f8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23228b22" width="400" height="300"/%3E%3Ccircle cx="180" cy="120" r="15" fill="%2352b788"/%3E%3Ccircle cx="220" cy="130" r="15" fill="%2352b788"/%3E%3Ccircle cx="200" cy="155" r="15" fill="%2352b788"/%3E%3Ccircle cx="210" cy="185" r="15" fill="%2352b788"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23fff"%3E🌿 Coriander%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Coriander - Sobji Haat'
             },
             {
@@ -1514,8 +1247,7 @@
                 description: 'Crisp vegetable for salads and cooking',
                 descriptionBn: 'Taja bandhakopi, salad ar ranna jonno',
                 price: 35,
-                category: 'leafy',
-                image: 'https://images.unsplash.com/photo-1571772996211-2f02c9727629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%239acd32" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="85" fill="%2395d5b2"/%3E%3Ccircle cx="185" cy="140" r="65" fill="%23b7e4c7"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🥬 Cabbage%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Cabbage - Sobji Haat'
             },
             {
@@ -1525,8 +1257,7 @@
                 description: 'Long beans / French beans',
                 descriptionBn: 'Lamba seem, french beans',
                 price: 50,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1592139550557-54d3e75e9fcc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23556b2f" width="400" height="300"/%3E%3Crect x="120" y="100" width="20" height="120" rx="10" fill="%2352b788"/%3E%3Crect x="160" y="90" width="20" height="130" rx="10" fill="%2352b788"/%3E%3Crect x="200" y="95" width="20" height="125" rx="10" fill="%2352b788"/%3E%3Crect x="240" y="105" width="20" height="115" rx="10" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🫘 Beans%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Beans - Sobji Haat'
             },
             {
@@ -1536,8 +1267,7 @@
                 description: 'Sweet root vegetable, good for salads and curries',
                 descriptionBn: 'Misti gajor, salad ar torkari jonno',
                 price: 45,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ff8c00" width="400" height="300"/%3E%3Cpath d="M 200 80 L 190 200 L 210 200 Z" fill="%23ff6347"/%3E%3Crect x="190" y="70" width="20" height="15" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🥕 Carrot%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Carrot - Sobji Haat'
             },
             {
@@ -1547,8 +1277,7 @@
                 description: 'Sour pulp for dals and chutneys',
                 descriptionBn: 'Tok tetul, dal ar chutney jonno',
                 price: 90,
-                category: 'spices',
-                image: 'https://images.unsplash.com/photo-1621856366547-58e0d8fe5b44?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%238b4513" width="400" height="300"/%3E%3Cpath d="M 150 120 Q 180 100 200 120 Q 220 100 250 120 L 240 180 Q 200 200 160 180 Z" fill="%23a0522d"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3ETamarind%3C/text%3E%3C/svg%3E',
                 alt: 'Tamarind - Sobji Haat'
             },
             {
@@ -1558,8 +1287,7 @@
                 description: 'Fresh ginger root, aromatic',
                 descriptionBn: 'Taja ada, gondho bhora',
                 price: 100,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23daa520" width="400" height="300"/%3E%3Cpath d="M 120 140 Q 150 120 180 140 Q 200 130 220 145 Q 240 135 260 150 Q 250 170 220 175 Q 200 180 180 170 Q 160 175 140 165 Z" fill="%23cd853f"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3EGinger%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Ginger - Sobji Haat'
             },
             {
@@ -1569,8 +1297,7 @@
                 description: 'Whole garlic bulbs',
                 descriptionBn: 'Ek gada roshun',
                 price: 120,
-                category: 'spices',
-                image: 'https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f5f5dc" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="70" fill="%23fff8dc"/%3E%3Ccircle cx="180" cy="140" r="20" fill="%23fffacd"/%3E%3Ccircle cx="220" cy="140" r="20" fill="%23fffacd"/%3E%3Ccircle cx="200" cy="170" r="20" fill="%23fffacd"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🧄 Garlic%3C/text%3E%3C/svg%3E',
                 alt: 'Garlic Bulbs - Sobji Haat'
             },
             {
@@ -1580,8 +1307,7 @@
                 description: 'Crisp salad cucumber',
                 descriptionBn: 'Thanda shosha, salad jonno',
                 price: 30,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1561344632-2cfbdbb6501d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2398fb98" width="400" height="300"/%3E%3Crect x="120" y="110" width="160" height="80" rx="40" fill="%23228b22"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3E🥒 Cucumber%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Cucumber - Sobji Haat'
             },
             {
@@ -1591,8 +1317,7 @@
                 description: 'Ripe tomatoes for cooking',
                 descriptionBn: 'Lal tomato, ranna jonno',
                 price: 40,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ff4500" width="400" height="300"/%3E%3Ccircle cx="200" cy="155" r="75" fill="%23ff6347"/%3E%3Cpath d="M 180 100 L 190 110 L 200 105 L 210 110 L 220 100" fill="%2352b788" stroke="%23228b22" stroke-width="2"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🍅 Tomato%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Tomato - Sobji Haat'
             },
             {
@@ -1602,8 +1327,7 @@
                 description: 'Red/white onions (mix)',
                 descriptionBn: 'Lal-shada peyaj',
                 price: 35,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23dda0dd" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="75" fill="%23d8bfd8"/%3E%3Ccircle cx="200" cy="150" r="60" fill="%23e6e6fa"/%3E%3Cpath d="M 195 100 L 200 90 L 205 100" fill="%23deb887"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🧅 Onion%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Onion - Sobji Haat'
             },
             {
@@ -1613,8 +1337,7 @@
                 description: 'Local variety - firm, good for frying and boiling',
                 descriptionBn: 'Deshi aloo - bhaja ar sheddo jonno bhalo',
                 price: 25,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23d2b48c" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="90" ry="70" fill="%23deb887"/%3E%3Cellipse cx="185" cy="140" rx="75" ry="55" fill="%23f5deb3"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23333"%3E🥔 Chandramukhi%3C/text%3E%3C/svg%3E',
                 alt: 'Chandramukhi Potato - Sobji Haat'
             },
             {
@@ -1624,8 +1347,7 @@
                 description: 'Local variety - soft texture, good for mash and curry',
                 descriptionBn: 'Deshi aloo - bharta ar torkari jonno bhalo',
                 price: 28,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f4a460" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="85" ry="75" fill="%23daa520"/%3E%3Cellipse cx="190" cy="145" rx="70" ry="60" fill="%23f0e68c"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23333"%3E🥔 Jyoti%3C/text%3E%3C/svg%3E',
                 alt: 'Jyoti Potato - Sobji Haat'
             },
             {
@@ -1635,8 +1357,7 @@
                 description: 'Earthy beet root',
                 descriptionBn: 'Lal beet, mishti',
                 price: 40,
-                category: 'root',
-                image: 'https://images.unsplash.com/photo-1571772996211-2f02c9727629?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%238b0000" width="400" height="300"/%3E%3Ccircle cx="200" cy="160" r="70" fill="%23a52a2a"/%3E%3Cpath d="M 190 100 L 200 85 L 210 100 L 205 110 L 195 110 Z" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3EBeet Root%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Beet Root - Sobji Haat'
             },
             {
@@ -1646,8 +1367,7 @@
                 description: 'Leafy green (pui / palong)',
                 descriptionBn: 'Taja palong shaak',
                 price: 25,
-                category: 'leafy',
-                image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23006400" width="400" height="300"/%3E%3Cellipse cx="180" cy="130" rx="40" ry="50" fill="%2352b788"/%3E%3Cellipse cx="220" cy="140" rx="40" ry="50" fill="%2352b788"/%3E%3Cellipse cx="200" cy="170" rx="40" ry="50" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3ESpinach%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Spinach - Sobji Haat'
             },
             {
@@ -1657,8 +1377,7 @@
                 description: 'Ripe small papaya for fruit and salad',
                 descriptionBn: 'Chhoto pepe, fol ar salad jonno',
                 price: 35,
-                category: 'fruit',
-                image: 'https://images.unsplash.com/photo-1611080623166-c56ce3c23964?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ffa500" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="70" ry="90" fill="%23ff8c00"/%3E%3Cellipse cx="200" cy="150" rx="50" ry="70" fill="%23ffa07a"/%3E%3Ccircle cx="200" cy="140" r="5" fill="%23333"/%3E%3Ccircle cx="190" cy="155" r="5" fill="%23333"/%3E%3Ccircle cx="210" cy="155" r="5" fill="%23333"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3EPapaya%3C/text%3E%3C/svg%3E',
                 alt: 'Fresh Papaya - Sobji Haat'
             },
             {
@@ -1668,8 +1387,7 @@
                 description: 'Sarson / mustard leaves for saag',
                 descriptionBn: 'Sarson pata, shaak banate',
                 price: 30,
-                category: 'leafy',
-                image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80',
+                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%239acd32" width="400" height="300"/%3E%3Cpath d="M 200 80 Q 180 110 170 150 Q 160 180 180 200" fill="%2352b788"/%3E%3Cpath d="M 200 80 Q 220 110 230 150 Q 240 180 220 200" fill="%2352b788"/%3E%3Cpath d="M 200 80 Q 200 120 200 160 Q 200 190 200 210" fill="%232d6a4f"/%3E%3Ctext x="200" y="260" font-size="18" text-anchor="middle" fill="%23fff"%3EMustard Leaf%3C/text%3E%3C/svg%3E',
                 alt: 'Mustard Leaf - Sobji Haat'
             }
         ];
@@ -1683,8 +1401,6 @@
         let theme = localStorage.getItem('theme') || 'light';
         let hasDiscount = localStorage.getItem('hasDiscount') === 'true';
         let checkoutData = null;
-        let currentSlide = 0;
-        let slideInterval;
         
         // ==========================================
         // INITIALIZATION
@@ -1693,13 +1409,11 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeTheme();
             initializeLanguage();
-            renderCategories();
             renderProducts();
-            startSlider();
+            renderCarousel();
             updateCartBadge();
             setupEventListeners();
             showOfferPopup();
-            updateMobileToggles();
         });
         
         function initializeTheme() {
@@ -1711,58 +1425,6 @@
             updateLanguage();
         }
         
-        function updateMobileToggles() {
-            // Update mobile theme toggle
-            const mobileThemeToggle = document.getElementById('mobileThemeToggle');
-            if (mobileThemeToggle) {
-                mobileThemeToggle.classList.toggle('active', theme === 'dark');
-            }
-            
-            // Update mobile language toggle
-            const mobileLangToggle = document.getElementById('mobileLangToggle');
-            if (mobileLangToggle) {
-                mobileLangToggle.classList.toggle('active', currentLang === 'bn');
-            }
-        }
-        
-        // ==========================================
-        // SLIDER FUNCTIONS
-        // ==========================================
-        
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 5000);
-        }
-        
-        function nextSlide() {
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            
-            currentSlide = (currentSlide + 1) % slides.length;
-            
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-        
-        function goToSlide(index) {
-            const slides = document.querySelectorAll('.slide');
-            const dots = document.querySelectorAll('.slider-dot');
-            
-            slides[currentSlide].classList.remove('active');
-            dots[currentSlide].classList.remove('active');
-            
-            currentSlide = index;
-            
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-            
-            // Reset the interval
-            clearInterval(slideInterval);
-            startSlider();
-        }
-        
         // ==========================================
         // THEME TOGGLE
         // ==========================================
@@ -1772,14 +1434,11 @@
             localStorage.setItem('theme', theme);
             document.documentElement.setAttribute('data-theme', theme);
             updateThemeIcon();
-            updateMobileToggles();
         }
         
         function updateThemeIcon() {
             const themeBtn = document.getElementById('themeToggle');
-            if (themeBtn) {
-                themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
-            }
+            themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
         }
         
         // ==========================================
@@ -1790,7 +1449,6 @@
             currentLang = currentLang === 'en' ? 'bn' : 'en';
             localStorage.setItem('language', currentLang);
             updateLanguage();
-            updateMobileToggles();
         }
         
         function updateLanguage() {
@@ -1798,9 +1456,6 @@
             elements.forEach(el => {
                 el.textContent = currentLang === 'en' ? el.getAttribute('data-en') : el.getAttribute('data-bn');
             });
-            
-            // Update categories
-            renderCategories();
             
             // Update products
             renderProducts();
@@ -1816,125 +1471,12 @@
         }
         
         // ==========================================
-        // SEARCH SUGGESTIONS
-        // ==========================================
-        
-        function showSearchSuggestions(searchTerm) {
-            const suggestionsContainer = document.getElementById('searchSuggestions');
-            
-            if (!searchTerm) {
-                suggestionsContainer.classList.remove('active');
-                return;
-            }
-            
-            const filteredProducts = products.filter(product => {
-                return currentLang === 'en' 
-                    ? product.name.toLowerCase().includes(searchTerm.toLowerCase())
-                    : product.nameBn.includes(searchTerm);
-            });
-            
-            if (filteredProducts.length === 0) {
-                suggestionsContainer.innerHTML = `<div class="suggestion-item">${t('No products found', 'Kono ponyo paoa jayni')}</div>`;
-            } else {
-                suggestionsContainer.innerHTML = filteredProducts.map(product => `
-                    <div class="suggestion-item" onclick="selectSuggestion('${currentLang === 'en' ? product.name : product.nameBn}')">
-                        ${currentLang === 'en' ? product.name : product.nameBn}
-                    </div>
-                `).join('');
-            }
-            
-            suggestionsContainer.classList.add('active');
-        }
-        
-        function selectSuggestion(productName) {
-            document.getElementById('searchInput').value = productName;
-            document.getElementById('searchSuggestions').classList.remove('active');
-            filterAndSortProducts();
-        }
-        
-        // ==========================================
-        // CATEGORIES
-        // ==========================================
-        
-        function renderCategories() {
-            const grid = document.getElementById('categoriesGrid');
-            const filter = document.getElementById('categoryFilter');
-            
-            grid.innerHTML = categories.map(category => `
-                <div class="category-card" onclick="filterByCategory('${category.id}')">
-                    <div class="category-icon">
-                        <img src="${category.image}" alt="${currentLang === 'en' ? category.name : category.nameBn}">
-                    </div>
-                    <h3>${currentLang === 'en' ? category.name : category.nameBn}</h3>
-                </div>
-            `).join('');
-            
-            // Update filter dropdown
-            filter.innerHTML = `
-                <option value="all" data-en="All Categories" data-bn="Sob Categories">${t('All Categories', 'Sob Categories')}</option>
-                ${categories.map(category => `
-                    <option value="${category.id}">${currentLang === 'en' ? category.name : category.nameBn}</option>
-                `).join('')}
-            `;
-        }
-        
-        function filterByCategory(categoryId) {
-            document.getElementById('categoryFilter').value = categoryId;
-            filterAndSortProducts();
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // ==========================================
-        // SEARCH & FILTER
-        // ==========================================
-        
-        function filterAndSortProducts() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const categoryFilter = document.getElementById('categoryFilter').value;
-            const sortBy = document.getElementById('sortBy').value;
-            
-            let filteredProducts = products.filter(product => {
-                const matchesSearch = currentLang === 'en' 
-                    ? product.name.toLowerCase().includes(searchTerm) || 
-                      product.description.toLowerCase().includes(searchTerm)
-                    : product.nameBn.includes(searchTerm) || 
-                      product.descriptionBn.includes(searchTerm);
-                
-                const matchesCategory = categoryFilter === 'all' || product.category === categoryFilter;
-                
-                return matchesSearch && matchesCategory;
-            });
-            
-            // Sort products
-            filteredProducts.sort((a, b) => {
-                switch(sortBy) {
-                    case 'name':
-                        return currentLang === 'en' 
-                            ? a.name.localeCompare(b.name)
-                            : a.nameBn.localeCompare(b.nameBn);
-                    case 'price-low':
-                        return a.price - b.price;
-                    case 'price-high':
-                        return b.price - a.price;
-                    default:
-                        return 0;
-                }
-            });
-            
-            renderProductsGrid(filteredProducts);
-        }
-        
-        // ==========================================
         // RENDER PRODUCTS
         // ==========================================
         
         function renderProducts() {
-            filterAndSortProducts();
-        }
-        
-        function renderProductsGrid(productsToRender) {
             const grid = document.getElementById('productsGrid');
-            grid.innerHTML = productsToRender.map(product => `
+            grid.innerHTML = products.map(product => `
                 <div class="product-card">
                     <img src="${product.image}" alt="${product.alt}" class="product-image" loading="lazy">
                     <h3 class="product-name">${currentLang === 'en' ? product.name : product.nameBn}</h3>
@@ -1953,6 +1495,38 @@
                     </div>
                 </div>
             `).join('');
+        }
+        
+        // ==========================================
+        // CAROUSEL
+        // ==========================================
+        
+        function renderCarousel() {
+            const track = document.getElementById('carouselTrack');
+            const featuredProducts = products.slice(0, 5);
+            
+            const items = [
+                `<div class="carousel-card offer">
+                    <h3>5% ${t('OFF', 'Chhad')}</h3>
+                    <p>${t('Leave a Google Review & Get 5% Discount!', 'Google Review din aar 5% Chhad pan!')}</p>
+                </div>`,
+                ...featuredProducts.map(p => `
+                    <div class="carousel-card">
+                        <img src="${p.image}" alt="${p.alt}" loading="lazy">
+                        <h3>${currentLang === 'en' ? p.name : p.nameBn}</h3>
+                        <p>${currentLang === 'en' ? p.description : p.descriptionBn}</p>
+                        <p class="price">₹${p.price}/${t('kg', 'kg')}</p>
+                        <button class="btn" onclick="scrollToProducts()">${t('View Product', 'Dekho')}</button>
+                    </div>
+                `)
+            ];
+            
+            // Duplicate for infinite scroll
+            track.innerHTML = items.join('') + items.join('');
+        }
+        
+        function scrollToProducts() {
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
         
         // ==========================================
@@ -2017,14 +1591,9 @@
         
         function updateCartBadge() {
             const badge = document.getElementById('cartBadge');
-            const mobileBadge = document.getElementById('mobileCartBadge');
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-            
-            if (badge) badge.textContent = totalItems;
-            if (mobileBadge) mobileBadge.textContent = totalItems;
-            
-            if (badge) badge.style.display = totalItems > 0 ? 'block' : 'none';
-            if (mobileBadge) mobileBadge.style.display = totalItems > 0 ? 'block' : 'none';
+            badge.textContent = totalItems;
+            badge.style.display = totalItems > 0 ? 'block' : 'none';
         }
         
         function renderCart() {
@@ -2095,30 +1664,118 @@
         }
         
         // ==========================================
+        // CHECKOUT
+        // ==========================================
+        
+        function openCheckout() {
+            document.getElementById('cartModal').classList.remove('active');
+            document.getElementById('checkoutModal').classList.add('active');
+            renderCheckoutSummary();
+        }
+        
+        function renderCheckoutSummary() {
+            const summary = document.getElementById('checkoutSummary');
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.totalWeight), 0);
+            const discount = hasDiscount ? subtotal * 0.05 : 0;
+            const deliveryFee = 20;
+            const total = subtotal - discount + deliveryFee;
+            
+            summary.innerHTML = `
+                <h3>${t('Order Summary', 'Order Summary')}</h3>
+                ${cart.map(item => {
+                    const product = products.find(p => p.id === item.productId);
+                    return `
+                        <div class="summary-row">
+                            <span>${currentLang === 'en' ? product.name : product.nameBn} (${item.totalWeight}kg)</span>
+                            <span>₹${(item.price * item.totalWeight).toFixed(2)}</span>
+                        </div>
+                    `;
+                }).join('')}
+                <div class="summary-row">
+                    <span>${t('Subtotal:', 'Subtotal:')}</span>
+                    <span>₹${subtotal.toFixed(2)}</span>
+                </div>
+                ${hasDiscount ? `
+                    <div class="summary-row">
+                        <span>${t('Discount (5%):', 'Chhad (5%):')}${t('', '')}</span>
+                        <span>-₹${discount.toFixed(2)}</span>
+                    </div>
+                ` : ''}
+                <div class="summary-row">
+                    <span>${t('Delivery Fee:', 'Delivery Taka:')}</span>
+                    <span>₹${deliveryFee.toFixed(2)}</span>
+                </div>
+                <div class="summary-row total">
+                    <span>${t('Total:', 'Mote:')}</span>
+                    <span>₹${total.toFixed(2)}</span>
+                </div>
+            `;
+        }
+        
+        function generateOrderMessage() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const deliveryTime = document.getElementById('deliveryTime').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.totalWeight), 0);
+            const discount = hasDiscount ? subtotal * 0.05 : 0;
+            const deliveryFee = 20;
+            const total = subtotal - discount + deliveryFee;
+            
+            let message = `*Sobji Haat - ${t('New Order', 'Notun Order')}*\n\n`;
+            message += `*${t('Customer', 'Customer')}:* ${name}\n`;
+            message += `*${t('Phone', 'Phone')}:* ${phone}\n`;
+            message += `*${t('Address', 'Thikana')}:* ${address}\n`;
+            message += `*${t('Delivery Time', 'Delivery Somoy')}:* ${deliveryTime}\n`;
+            message += `*${t('Payment', 'Payment')}:* ${paymentMethod === 'cod' ? t('Cash on Delivery', 'Taka Ghor-e') : 'UPI'}\n\n`;
+            
+            message += `*${t('Items', 'Jinish')}:*\n`;
+            cart.forEach(item => {
+                const product = products.find(p => p.id === item.productId);
+                const name = currentLang === 'en' ? product.name : product.nameBn;
+                message += `• ${name} - ${item.quantity} × ${UNITS[item.unit].label} = ${item.totalWeight}kg - ₹${(item.price * item.totalWeight).toFixed(2)}\n`;
+            });
+            
+            message += `\n*${t('Subtotal', 'Subtotal')}:* ₹${subtotal.toFixed(2)}\n`;
+            if (hasDiscount) {
+                message += `*${t('Discount (5%)', 'Chhad (5%)')}:* -₹${discount.toFixed(2)}\n`;
+            }
+            message += `*${t('Delivery Fee', 'Delivery Taka')}:* ₹${deliveryFee.toFixed(2)}\n`;
+            message += `*${t('Total', 'Mote')}:* ₹${total.toFixed(2)}\n\n`;
+            message += t('Please confirm order and expected delivery time. Thank you!', 'Order confirm korun aar delivery somoy janaben. Dhonnobad!');
+            
+            return encodeURIComponent(message);
+        }
+        
+        function sendWhatsAppOrder() {
+            const message = generateOrderMessage();
+            const phone = CONTACT_INFO.phone.replace('+', '');
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+        
+        // ==========================================
         // EVENT LISTENERS
         // ==========================================
         
         function setupEventListeners() {
             // Theme toggle
-            document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
-            document.getElementById('mobileThemeToggle')?.addEventListener('click', toggleTheme);
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
             
             // Language toggle
-            document.getElementById('langToggle')?.addEventListener('click', toggleLanguage);
-            document.getElementById('mobileLangToggle')?.addEventListener('click', toggleLanguage);
+            document.getElementById('langToggle').addEventListener('click', toggleLanguage);
             
             // Hamburger menu
             const hamburger = document.getElementById('hamburger');
             const nav = document.getElementById('nav');
-            if (hamburger && nav) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    nav.classList.toggle('active');
-                });
-            }
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
             
             // Close nav on link click
-            document.querySelectorAll('.nav a').forEach(link => {
+            nav.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('active');
                     nav.classList.remove('active');
@@ -2126,85 +1783,69 @@
             });
             
             // Cart modal
-            document.getElementById('cartBtn')?.addEventListener('click', () => {
+            document.getElementById('cartBtn').addEventListener('click', () => {
                 document.getElementById('cartModal').classList.add('active');
                 renderCart();
             });
             
-            document.getElementById('mobileCartBtn')?.addEventListener('click', () => {
-                document.getElementById('cartModal').classList.add('active');
-                renderCart();
-                // Close mobile menu
-                hamburger.classList.remove('active');
-                nav.classList.remove('active');
-            });
-            
-            document.getElementById('closeCart')?.addEventListener('click', () => {
+            document.getElementById('closeCart').addEventListener('click', () => {
                 document.getElementById('cartModal').classList.remove('active');
             });
             
             // Checkout modal
-            document.getElementById('closeCheckout')?.addEventListener('click', () => {
+            document.getElementById('closeCheckout').addEventListener('click', () => {
                 document.getElementById('checkoutModal').classList.remove('active');
             });
             
             // Shop now button
-            document.getElementById('shopNowBtn')?.addEventListener('click', () => {
-                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('shopNowBtn').addEventListener('click', () => {
+                scrollToProducts();
                 if (!hasDiscount && !localStorage.getItem('offerShown')) {
                     showOfferPopup();
                 }
             });
             
-            // Search functionality
-            document.getElementById('searchBtn')?.addEventListener('click', filterAndSortProducts);
-            document.getElementById('searchInput')?.addEventListener('input', (e) => {
-                showSearchSuggestions(e.target.value);
-            });
-            document.getElementById('searchInput')?.addEventListener('keyup', (e) => {
-                if (e.key === 'Enter') filterAndSortProducts();
-            });
-            
-            // Close search suggestions when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.search-container')) {
-                    document.getElementById('searchSuggestions').classList.remove('active');
+            // WhatsApp button
+            document.getElementById('whatsappBtn').addEventListener('click', () => {
+                if (cart.length > 0) {
+                    sendWhatsAppOrder();
+                } else {
+                    window.open(`https://wa.me/${CONTACT_INFO.phone.replace('+', '')}`, '_blank');
                 }
             });
             
-            // Filter and sort
-            document.getElementById('categoryFilter')?.addEventListener('change', filterAndSortProducts);
-            document.getElementById('sortBy')?.addEventListener('change', filterAndSortProducts);
-            
             // Review button
-            document.getElementById('reviewBtn')?.addEventListener('click', openReview);
-            
-            // Slider dots
-            document.querySelectorAll('.slider-dot').forEach((dot, index) => {
-                dot.addEventListener('click', () => goToSlide(index));
-            });
+            document.getElementById('reviewBtn').addEventListener('click', openReview);
             
             // Offer popup
-            document.getElementById('openReviewBtn')?.addEventListener('click', () => {
+            document.getElementById('openReviewBtn').addEventListener('click', () => {
                 openReview();
                 closeOfferPopup();
             });
             
-            document.getElementById('alreadyReviewedBtn')?.addEventListener('click', () => {
+            document.getElementById('alreadyReviewedBtn').addEventListener('click', () => {
                 applyDiscount();
                 closeOfferPopup();
             });
             
-            document.getElementById('closeOfferPopup')?.addEventListener('click', closeOfferPopup);
+            document.getElementById('closeOfferPopup').addEventListener('click', closeOfferPopup);
             
-            // Checkout form
-            document.getElementById('checkoutForm')?.addEventListener('submit', handleCheckoutSubmit);
-            
-            // WhatsApp checkout
-            document.getElementById('whatsappCheckout')?.addEventListener('click', (e) => {
+            // WhatsApp checkout button
+            document.getElementById('whatsappCheckoutBtn').addEventListener('click', (e) => {
                 e.preventDefault();
+                
+                const name = document.getElementById('customerName').value;
+                const phone = document.getElementById('customerPhone').value;
+                const address = document.getElementById('customerAddress').value;
+                
+                if (!name || !phone || !address) {
+                    alert(t('Please fill all required fields', 'Sob field bhoren'));
+                    return;
+                }
+                
                 sendWhatsAppOrder();
                 showMessage(t('Order sent via WhatsApp!', 'WhatsApp e order pathano hoyeche!'));
+                
                 setTimeout(() => {
                     clearCart();
                     document.getElementById('checkoutModal').classList.remove('active');
@@ -2219,29 +1860,6 @@
                     }
                 });
             });
-        }
-        
-        function handleCheckoutSubmit(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('customerName').value;
-            const phone = document.getElementById('customerPhone').value;
-            const address = document.getElementById('customerAddress').value;
-            
-            if (!name || !phone || !address) {
-                alert(t('Please fill all required fields', 'Sob field bhoren'));
-                return;
-            }
-            
-            // Generate order ID
-            const orderId = 'SH' + Date.now().toString().slice(-8);
-            
-            showMessage(t(`Order confirmed! Order ID: ${orderId}`, `Order confirm hoyeche! Order ID: ${orderId}`));
-            
-            setTimeout(() => {
-                clearCart();
-                document.getElementById('checkoutModal').classList.remove('active');
-            }, 2000);
         }
         
         // ==========================================
