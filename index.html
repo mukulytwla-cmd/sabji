@@ -52,6 +52,7 @@
             color: var(--text-color);
             line-height: 1.6;
             transition: var(--transition);
+            overflow-x: hidden;
         }
         
         img {
@@ -94,24 +95,17 @@
         }
         
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
         
-        .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        .logo-img {
+            width: 50px;
+            height: 50px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
+            object-fit: cover;
+            box-shadow: var(--shadow);
         }
         
         .header-actions {
@@ -190,6 +184,92 @@
             color: var(--primary-color);
         }
         
+        /* Search Bar */
+        .search-container {
+            position: relative;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 1rem;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            padding-right: 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 0.5rem;
+        }
+        
+        /* Search Results */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-color);
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow-lg);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .search-results.active {
+            display: block;
+        }
+        
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .search-result-item:hover {
+            background-color: var(--surface-color);
+        }
+        
+        .search-result-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .search-result-info h4 {
+            margin-bottom: 0.25rem;
+            color: var(--text-color);
+        }
+        
+        .search-result-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
         /* Mobile Navigation */
         @media (max-width: 768px) {
             .hamburger {
@@ -209,6 +289,7 @@
                 box-shadow: var(--shadow-lg);
                 transition: right 0.3s ease;
                 align-items: flex-start;
+                z-index: 1001;
             }
             
             .nav.active {
@@ -220,26 +301,131 @@
                 padding: 1rem 0;
                 border-bottom: 1px solid var(--border-color);
             }
+            
+            .header-actions .icon-btn:not(#cartBtn) {
+                display: none;
+            }
+            
+            .search-container {
+                display: none;
+            }
+            
+            .mobile-search-btn {
+                display: block !important;
+            }
+        }
+        
+        /* Mobile Search Overlay */
+        .mobile-search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 100px;
+        }
+        
+        .mobile-search-overlay.active {
+            display: flex;
+        }
+        
+        .mobile-search-container {
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mobile-search-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .mobile-search-header h3 {
+            color: var(--primary-color);
+        }
+        
+        .mobile-search-close {
+            background: transparent;
+            font-size: 1.5rem;
+            color: var(--text-color);
         }
         
         /* Hero Section */
         .hero {
             margin-top: 70px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 4rem 1rem;
+            height: 85vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            color: white;
+        }
+        
+        .hero-slides {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .hero-slide.active {
+            opacity: 1;
+        }
+        
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6));
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            z-index: 1;
         }
         
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
         
         .btn {
@@ -251,6 +437,7 @@
             font-weight: 600;
             transition: var(--transition);
             display: inline-block;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
         
         .btn:hover {
@@ -263,10 +450,115 @@
             border: 2px solid white;
         }
         
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Typing Effect */
+        .typing-container {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .typing-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 3px solid white;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+        
+        /* Categories Section */
+        .categories-section {
+            padding: 4rem 1rem;
+            background-color: var(--surface-color);
+        }
+        
+        .categories-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+        
+        .categories-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .categories-track {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll 25s linear infinite;
+            width: max-content;
+        }
+        
+        .categories-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+        
+        .category-card {
+            min-width: 250px;
+            background-color: var(--bg-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            padding: 1.5rem;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .category-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
         /* Carousel */
         .carousel-section {
             padding: 2rem 1rem;
-            background-color: var(--surface-color);
+            background-color: var(--bg-color);
             overflow: hidden;
         }
         
@@ -299,18 +591,9 @@
             animation-play-state: paused;
         }
         
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-        
         .carousel-card {
             min-width: 300px;
-            background-color: var(--bg-color);
+            background-color: var(--surface-color);
             border-radius: 12px;
             box-shadow: var(--shadow);
             padding: 1.5rem;
@@ -375,11 +658,26 @@
             margin: 0 auto;
         }
         
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-bottom: 3rem;
-            color: var(--primary-color);
+        }
+        
+        .category-tab {
+            padding: 0.75rem 1.5rem;
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .category-tab.active {
+            background-color: var(--primary-color);
+            color: white;
         }
         
         .products-grid {
@@ -407,7 +705,6 @@
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #e0e0e0, #f5f5f5);
         }
         
         .product-name {
@@ -894,15 +1191,19 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
             
             .carousel-card {
                 min-width: 250px;
+            }
+            
+            .category-card {
+                min-width: 200px;
             }
             
             .products-grid {
@@ -911,7 +1212,11 @@
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+            
+            .mobile-search-btn {
+                display: block !important;
             }
         }
         
@@ -927,6 +1232,10 @@
         .mt-2 {
             margin-top: 2rem;
         }
+        
+        .mobile-search-btn {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -934,24 +1243,50 @@
     <header class="header">
         <div class="header-container">
             <a href="#" class="logo">
-                <div class="logo-icon">🌿</div>
-                <span data-en="Sobji Haat" data-bn="Sobji Haat">Sobji Haat</span>
+                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=100&h=100&fit=crop&crop=center" alt="Sobji Haat Logo" class="logo-img">
             </a>
+            
+            <!-- Desktop Search -->
+            <div class="search-container">
+                <input type="text" class="search-bar" id="searchInput" placeholder="Search for vegetables, fruits..." data-en="Search for vegetables, fruits..." data-bn="Sobji, fol khujun...">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="searchResults"></div>
+            </div>
             
             <nav class="nav" id="nav">
                 <a href="#" data-en="Home" data-bn="Bari">Home</a>
+                <a href="#categories" data-en="Categories" data-bn="Categories">Categories</a>
                 <a href="#products" data-en="Products" data-bn="Pণyo">Products</a>
                 <a href="#offer" data-en="Offer" data-bn="Offer">Offer</a>
                 <a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a>
                 <a href="#map" data-en="Map/Review" data-bn="Map/Review">Map/Review</a>
+                <div class="mobile-nav-actions">
+                    <button class="icon-btn" id="mobileLangToggle" aria-label="Toggle Language" title="Toggle Language">
+                        <i class="fas fa-language"></i>
+                    </button>
+                    <button class="icon-btn" id="mobileThemeToggle" aria-label="Toggle Theme" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <a href="tel:+919051410591" class="icon-btn" aria-label="Call Us" title="Call Us">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <button class="icon-btn" id="mobileWhatsappBtn" aria-label="WhatsApp" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                </div>
             </nav>
             
             <div class="header-actions">
+                <button class="icon-btn mobile-search-btn" id="mobileSearchBtn" aria-label="Search" title="Search">
+                    <i class="fas fa-search"></i>
+                </button>
                 <button class="icon-btn" id="langToggle" aria-label="Toggle Language" title="Toggle Language">
-                    🌐
+                    <i class="fas fa-language"></i>
                 </button>
                 <button class="icon-btn" id="themeToggle" aria-label="Toggle Theme" title="Toggle Theme">
-                    🌙
+                    <i class="fas fa-moon"></i>
                 </button>
                 <a href="tel:+919051410591" class="icon-btn" aria-label="Call Us" title="Call Us">
                     <i class="fas fa-phone"></i>
@@ -972,11 +1307,54 @@
         </div>
     </header>
 
+    <!-- Mobile Search Overlay -->
+    <div class="mobile-search-overlay" id="mobileSearchOverlay">
+        <div class="mobile-search-container">
+            <div class="mobile-search-header">
+                <h3 data-en="Search Products" data-bn="Ponyo Khujun">Search Products</h3>
+                <button class="mobile-search-close" id="mobileSearchClose">&times;</button>
+            </div>
+            <div class="search-container">
+                <input type="text" class="search-bar" id="mobileSearchInput" placeholder="Search for vegetables, fruits..." data-en="Search for vegetables, fruits..." data-bn="Sobji, fol khujun...">
+                <button class="search-btn" id="mobileSearchBtn">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="search-results" id="mobileSearchResults"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1 data-en="Fresh Vegetables Delivered Daily" data-bn="Roj Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</h1>
-        <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms to your doorstep</p>
-        <button class="btn" id="shopNowBtn" data-en="Shop Now" data-bn="Kinte Cholo">Shop Now</button>
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1566385101042-1a0aa0c1268c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1592924357228-91a4daadcfea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>
+                <span class="typing-container">
+                    <span class="typing-text" data-en="Fresh Vegetables Delivered Daily" data-bn="Roj Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</span>
+                </span>
+            </h1>
+            <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms to your doorstep</p>
+            <button class="btn" id="shopNowBtn" data-en="Shop Now" data-bn="Kinte Cholo">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="categories-container">
+            <h2 class="section-title" data-en="Shop by Categories" data-bn="Categories Onujayi Keno">Shop by Categories</h2>
+            <div class="categories-wrapper">
+                <div class="categories-track" id="categoriesTrack">
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Carousel Section -->
@@ -999,6 +1377,11 @@
     <!-- Products Section -->
     <section class="products-section" id="products">
         <h2 class="section-title" data-en="Our Fresh Products" data-bn="Amader Taja Ponyo">Our Fresh Products</h2>
+        
+        <div class="category-tabs" id="categoryTabs">
+            <!-- Category tabs will be populated by JavaScript -->
+        </div>
+        
         <div class="products-grid" id="productsGrid">
             <!-- Products will be populated by JavaScript -->
         </div>
@@ -1069,6 +1452,7 @@
             
             <div class="footer-section">
                 <h3 data-en="Quick Links" data-bn="Joldi Links">Quick Links</h3>
+                <p><a href="#categories" data-en="Categories" data-bn="Categories">Categories</a></p>
                 <p><a href="#products" data-en="Products" data-bn="Ponyo">Products</a></p>
                 <p><a href="#offer" data-en="Offers" data-bn="Offer">Offers</a></p>
                 <p><a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a></p>
@@ -1178,8 +1562,43 @@
             '2kg': { label: '2 kg', weight: 2 }
         };
         
+        // Categories
+        const categories = [
+            {
+                id: 'indian',
+                name: 'Indian Vegetables',
+                nameBn: 'Deshi Sobji',
+                icon: '🥔'
+            },
+            {
+                id: 'exotic',
+                name: 'Exotic Vegetables',
+                nameBn: 'Bideshi Sobji',
+                icon: '🥦'
+            },
+            {
+                id: 'leafy',
+                name: 'Leafy Greens',
+                nameBn: 'Shaak Sobji',
+                icon: '🥬'
+            },
+            {
+                id: 'preservatives',
+                name: 'Preservatives',
+                nameBn: 'Preservatives',
+                icon: '🥫'
+            },
+            {
+                id: 'other',
+                name: 'Other Products',
+                nameBn: 'Onnanno Ponyo',
+                icon: '🛒'
+            }
+        ];
+        
         // Product Database
         const products = [
+            // Indian Vegetables
             {
                 id: 1,
                 name: 'Lemon (Gondhoraj)',
@@ -1187,7 +1606,8 @@
                 description: 'Fragrant citrus used for flavoring and chutneys',
                 descriptionBn: 'Gondho-wala lebu, chutney ar khete bhalo',
                 price: 80,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f4e04d" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="80" ry="100" fill="%23ffed4e"/%3E%3Cellipse cx="185" cy="135" rx="60" ry="75" fill="%23fff566"/%3E%3Ctext x="200" y="160" font-size="24" text-anchor="middle" fill="%23666"%3E🍋 Gondhoraj%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80',
                 alt: 'Gondhoraj Lemon - Sobji Haat'
             },
             {
@@ -1197,7 +1617,8 @@
                 description: 'Whole mature coconut for cooking and milk',
                 descriptionBn: 'Boro narkol, ranna ar dudh er jonno',
                 price: 40,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23d4a574" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="90" fill="%23a67c52"/%3E%3Ccircle cx="200" cy="150" r="70" fill="%23c9a277"/%3E%3Ctext x="200" y="160" font-size="24" text-anchor="middle" fill="%23fff"%3E🥥 Coconut%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://images.pexels.com/photos/7676718/pexels-photo-7676718.jpeg',
                 alt: 'Fresh Coconut - Sobji Haat'
             },
             {
@@ -1207,7 +1628,8 @@
                 description: 'Clean, food-grade banana leaves for serving',
                 descriptionBn: 'Porishkar kolar pata, khabar debar jonno',
                 price: 20,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2390ee90" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="150" ry="80" fill="%2352b788"/%3E%3Cpath d="M 200 150 Q 120 120 100 150 Q 120 180 200 150" fill="%2374c69d"/%3E%3Ctext x="200" y="160" font-size="20" text-anchor="middle" fill="%23fff"%3E🍃 Banana Leaf%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://media.istockphoto.com/id/157479249/photo/green-banana-leaf-isolated-on-white-with-clipping-path.jpg?s=2048x2048&w=is&k=20&c=632RKhMCKgbb8w4ZT9yS7Iw3E2vsRM_L_GgTbVng7XI=',
                 alt: 'Banana Leaf - Sobji Haat'
             },
             {
@@ -1217,7 +1639,8 @@
                 description: 'Spicy green chilies for cooking',
                 descriptionBn: 'Jhaal kacha lonka, ranna jonno',
                 price: 60,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%236b8e23" width="400" height="300"/%3E%3Cpath d="M 180 80 Q 185 110 190 140 Q 195 170 200 200 Q 205 170 210 140 Q 215 110 220 80" fill="%2352b788" stroke="%232d6a4f" stroke-width="2"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3E🌶️ Green Chilli%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://media.istockphoto.com/id/182837666/photo/green-chillis-for-sale-at-the-market.jpg?s=2048x2048&w=is&k=20&c=cI7UOIK8NEy6oRtxXIk_L3D1uyu937tBSJnKBwsNYts=',
                 alt: 'Green Chilli - Sobji Haat'
             },
             {
@@ -1227,7 +1650,8 @@
                 description: 'Crunchy bell pepper, assorted colors',
                 descriptionBn: 'Misti capsicum, nana rong',
                 price: 70,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ffa500" width="400" height="300"/%3E%3Crect x="140" y="100" width="120" height="130" rx="20" fill="%23ff6347"/%3E%3Crect x="160" y="85" width="80" height="20" rx="10" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🫑 Capsicum%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://media.istockphoto.com/id/137350104/photo/green-peppers.jpg?s=2048x2048&w=is&k=20&c=na41QxBRh1fFr-MFJWIYFDUU3GfVDEFbPd5KyrgexQg=',
                 alt: 'Capsicum Bell Pepper - Sobji Haat'
             },
             {
@@ -1237,7 +1661,8 @@
                 description: 'Fresh cilantro/coriander leaves',
                 descriptionBn: 'Taja dhone pata',
                 price: 30,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23228b22" width="400" height="300"/%3E%3Ccircle cx="180" cy="120" r="15" fill="%2352b788"/%3E%3Ccircle cx="220" cy="130" r="15" fill="%2352b788"/%3E%3Ccircle cx="200" cy="155" r="15" fill="%2352b788"/%3E%3Ccircle cx="210" cy="185" r="15" fill="%2352b788"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23fff"%3E🌿 Coriander%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://media.istockphoto.com/id/1133790325/photo/fresh-coriander-cilantro-leaves-on-basket.jpg?s=2048x2048&w=is&k=20&c=HpsqbfNQ_mb-lJbdqJvGpuUwFBYqfUPVWtL8KA7uHyw=',
                 alt: 'Fresh Coriander - Sobji Haat'
             },
             {
@@ -1247,7 +1672,8 @@
                 description: 'Crisp vegetable for salads and cooking',
                 descriptionBn: 'Taja bandhakopi, salad ar ranna jonno',
                 price: 35,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%239acd32" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="85" fill="%2395d5b2"/%3E%3Ccircle cx="185" cy="140" r="65" fill="%23b7e4c7"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🥬 Cabbage%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2018/10/03/22/08/kohl-3722517_1280.jpg',
                 alt: 'Fresh Cabbage - Sobji Haat'
             },
             {
@@ -1257,7 +1683,8 @@
                 description: 'Long beans / French beans',
                 descriptionBn: 'Lamba seem, french beans',
                 price: 50,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23556b2f" width="400" height="300"/%3E%3Crect x="120" y="100" width="20" height="120" rx="10" fill="%2352b788"/%3E%3Crect x="160" y="90" width="20" height="130" rx="10" fill="%2352b788"/%3E%3Crect x="200" y="95" width="20" height="125" rx="10" fill="%2352b788"/%3E%3Crect x="240" y="105" width="20" height="115" rx="10" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🫘 Beans%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2015/05/11/03/58/green-beans-761940_1280.jpg',
                 alt: 'Fresh Beans - Sobji Haat'
             },
             {
@@ -1267,7 +1694,8 @@
                 description: 'Sweet root vegetable, good for salads and curries',
                 descriptionBn: 'Misti gajor, salad ar torkari jonno',
                 price: 45,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ff8c00" width="400" height="300"/%3E%3Cpath d="M 200 80 L 190 200 L 210 200 Z" fill="%23ff6347"/%3E%3Crect x="190" y="70" width="20" height="15" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🥕 Carrot%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2016/07/11/00/18/carrots-1508847_1280.jpg',
                 alt: 'Fresh Carrot - Sobji Haat'
             },
             {
@@ -1277,7 +1705,8 @@
                 description: 'Sour pulp for dals and chutneys',
                 descriptionBn: 'Tok tetul, dal ar chutney jonno',
                 price: 90,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%238b4513" width="400" height="300"/%3E%3Cpath d="M 150 120 Q 180 100 200 120 Q 220 100 250 120 L 240 180 Q 200 200 160 180 Z" fill="%23a0522d"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3ETamarind%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2023/11/08/05/16/tamarind-8373925_1280.jpg',
                 alt: 'Tamarind - Sobji Haat'
             },
             {
@@ -1287,7 +1716,8 @@
                 description: 'Fresh ginger root, aromatic',
                 descriptionBn: 'Taja ada, gondho bhora',
                 price: 100,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23daa520" width="400" height="300"/%3E%3Cpath d="M 120 140 Q 150 120 180 140 Q 200 130 220 145 Q 240 135 260 150 Q 250 170 220 175 Q 200 180 180 170 Q 160 175 140 165 Z" fill="%23cd853f"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3EGinger%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2020/04/29/12/39/ginger-5108759_1280.jpg',
                 alt: 'Fresh Ginger - Sobji Haat'
             },
             {
@@ -1297,7 +1727,8 @@
                 description: 'Whole garlic bulbs',
                 descriptionBn: 'Ek gada roshun',
                 price: 120,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f5f5dc" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="70" fill="%23fff8dc"/%3E%3Ccircle cx="180" cy="140" r="20" fill="%23fffacd"/%3E%3Ccircle cx="220" cy="140" r="20" fill="%23fffacd"/%3E%3Ccircle cx="200" cy="170" r="20" fill="%23fffacd"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🧄 Garlic%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2014/11/25/13/48/garlic-545223_1280.jpg',
                 alt: 'Garlic Bulbs - Sobji Haat'
             },
             {
@@ -1307,7 +1738,8 @@
                 description: 'Crisp salad cucumber',
                 descriptionBn: 'Thanda shosha, salad jonno',
                 price: 30,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%2398fb98" width="400" height="300"/%3E%3Crect x="120" y="110" width="160" height="80" rx="40" fill="%23228b22"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23fff"%3E🥒 Cucumber%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://usercontent1.hubstatic.com/14461774_f520.jpg',
                 alt: 'Fresh Cucumber - Sobji Haat'
             },
             {
@@ -1317,7 +1749,8 @@
                 description: 'Ripe tomatoes for cooking',
                 descriptionBn: 'Lal tomato, ranna jonno',
                 price: 40,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ff4500" width="400" height="300"/%3E%3Ccircle cx="200" cy="155" r="75" fill="%23ff6347"/%3E%3Cpath d="M 180 100 L 190 110 L 200 105 L 210 110 L 220 100" fill="%2352b788" stroke="%23228b22" stroke-width="2"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3E🍅 Tomato%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2019/07/11/10/14/cherry-tomato-4330441_1280.jpg',
                 alt: 'Fresh Tomato - Sobji Haat'
             },
             {
@@ -1327,7 +1760,8 @@
                 description: 'Red/white onions (mix)',
                 descriptionBn: 'Lal-shada peyaj',
                 price: 35,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23dda0dd" width="400" height="300"/%3E%3Ccircle cx="200" cy="150" r="75" fill="%23d8bfd8"/%3E%3Ccircle cx="200" cy="150" r="60" fill="%23e6e6fa"/%3E%3Cpath d="M 195 100 L 200 90 L 205 100" fill="%23deb887"/%3E%3Ctext x="200" y="250" font-size="20" text-anchor="middle" fill="%23333"%3E🧅 Onion%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?w=400&h=300&fit=crop',
                 alt: 'Fresh Onion - Sobji Haat'
             },
             {
@@ -1337,7 +1771,8 @@
                 description: 'Local variety - firm, good for frying and boiling',
                 descriptionBn: 'Deshi aloo - bhaja ar sheddo jonno bhalo',
                 price: 25,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23d2b48c" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="90" ry="70" fill="%23deb887"/%3E%3Cellipse cx="185" cy="140" rx="75" ry="55" fill="%23f5deb3"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23333"%3E🥔 Chandramukhi%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop',
                 alt: 'Chandramukhi Potato - Sobji Haat'
             },
             {
@@ -1347,7 +1782,8 @@
                 description: 'Local variety - soft texture, good for mash and curry',
                 descriptionBn: 'Deshi aloo - bharta ar torkari jonno bhalo',
                 price: 28,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23f4a460" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="85" ry="75" fill="%23daa520"/%3E%3Cellipse cx="190" cy="145" rx="70" ry="60" fill="%23f0e68c"/%3E%3Ctext x="200" y="250" font-size="18" text-anchor="middle" fill="%23333"%3E🥔 Jyoti%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2017/02/19/02/40/potatoes-2078775_1280.jpg',
                 alt: 'Jyoti Potato - Sobji Haat'
             },
             {
@@ -1357,7 +1793,8 @@
                 description: 'Earthy beet root',
                 descriptionBn: 'Lal beet, mishti',
                 price: 40,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%238b0000" width="400" height="300"/%3E%3Ccircle cx="200" cy="160" r="70" fill="%23a52a2a"/%3E%3Cpath d="M 190 100 L 200 85 L 210 100 L 205 110 L 195 110 Z" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3EBeet Root%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2018/06/22/13/52/beetroot-3490809_1280.jpg',
                 alt: 'Fresh Beet Root - Sobji Haat'
             },
             {
@@ -1367,7 +1804,8 @@
                 description: 'Leafy green (pui / palong)',
                 descriptionBn: 'Taja palong shaak',
                 price: 25,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23006400" width="400" height="300"/%3E%3Cellipse cx="180" cy="130" rx="40" ry="50" fill="%2352b788"/%3E%3Cellipse cx="220" cy="140" rx="40" ry="50" fill="%2352b788"/%3E%3Cellipse cx="200" cy="170" rx="40" ry="50" fill="%2352b788"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3ESpinach%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop',
                 alt: 'Fresh Spinach - Sobji Haat'
             },
             {
@@ -1377,7 +1815,8 @@
                 description: 'Ripe small papaya for fruit and salad',
                 descriptionBn: 'Chhoto pepe, fol ar salad jonno',
                 price: 35,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%23ffa500" width="400" height="300"/%3E%3Cellipse cx="200" cy="150" rx="70" ry="90" fill="%23ff8c00"/%3E%3Cellipse cx="200" cy="150" rx="50" ry="70" fill="%23ffa07a"/%3E%3Ccircle cx="200" cy="140" r="5" fill="%23333"/%3E%3Ccircle cx="190" cy="155" r="5" fill="%23333"/%3E%3Ccircle cx="210" cy="155" r="5" fill="%23333"/%3E%3Ctext x="200" y="260" font-size="20" text-anchor="middle" fill="%23fff"%3EPapaya%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2014/04/24/11/37/papaya-331273_1280.jpg',
                 alt: 'Fresh Papaya - Sobji Haat'
             },
             {
@@ -1387,8 +1826,512 @@
                 description: 'Sarson / mustard leaves for saag',
                 descriptionBn: 'Sarson pata, shaak banate',
                 price: 30,
-                image: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="300"%3E%3Crect fill="%239acd32" width="400" height="300"/%3E%3Cpath d="M 200 80 Q 180 110 170 150 Q 160 180 180 200" fill="%2352b788"/%3E%3Cpath d="M 200 80 Q 220 110 230 150 Q 240 180 220 200" fill="%2352b788"/%3E%3Cpath d="M 200 80 Q 200 120 200 160 Q 200 190 200 210" fill="%232d6a4f"/%3E%3Ctext x="200" y="260" font-size="18" text-anchor="middle" fill="%23fff"%3EMustard Leaf%3C/text%3E%3C/svg%3E',
+                category: 'indian',
+                image: 'https://cdn.pixabay.com/photo/2015/10/05/09/48/blossom-972369_1280.jpg',
                 alt: 'Mustard Leaf - Sobji Haat'
+            },
+            
+            // Exotic Vegetables
+            {
+                id: 22,
+                name: 'Bean Sprouts',
+                nameBn: 'Bean Sprouts',
+                description: 'Fresh bean sprouts for salads and stir-fries',
+                descriptionBn: 'Taja bean sprouts, salad ar stir-fry jonno',
+                price: 60,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2013/07/18/15/08/green-bean-bud-164652_1280.jpg',
+                alt: 'Bean Sprouts - Sobji Haat'
+            },
+            {
+                id: 23,
+                name: 'Peeled Garlic',
+                nameBn: 'Chhosa Roshun',
+                description: 'Fresh peeled garlic cloves',
+                descriptionBn: 'Taja chhosa roshun',
+                price: 150,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2020/06/21/01/28/garlic-5322921_1280.jpg',
+                alt: 'Peeled Garlic - Sobji Haat'
+            },
+            {
+                id: 24,
+                name: 'Sweet Corn',
+                nameBn: 'Misti Bhutta',
+                description: 'Fresh sweet corn on the cob',
+                descriptionBn: 'Taja misti bhutta',
+                price: 40,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2020/08/23/12/20/corn-5510709_1280.jpg',
+                alt: 'Sweet Corn - Sobji Haat'
+            },
+            {
+                id: 25,
+                name: 'Baby Corn',
+                nameBn: 'Baby Corn',
+                description: 'Tender baby corn for stir-fries',
+                descriptionBn: 'Komla baby corn, stir-fry jonno',
+                price: 80,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2024/08/20/14/40/corn-8983537_1280.jpg',
+                alt: 'Baby Corn - Sobji Haat'
+            },
+            {
+                id: 26,
+                name: 'Bell Pepper',
+                nameBn: 'Bell Pepper',
+                description: 'Colorful bell peppers (red, yellow, green)',
+                descriptionBn: 'Rongin bell pepper (lal, holud, sobuj)',
+                price: 120,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2014/10/22/21/54/bell-peppers-499068_1280.jpg',
+                alt: 'Bell Pepper - Sobji Haat'
+            },
+            {
+                id: 27,
+                name: 'Cherry Tomato',
+                nameBn: 'Cherry Tomato',
+                description: 'Sweet cherry tomatoes for salads',
+                descriptionBn: 'Misti cherry tomato, salad jonno',
+                price: 100,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2018/08/21/19/48/tomatoes-3622009_1280.jpg',
+                alt: 'Cherry Tomato - Sobji Haat'
+            },
+            {
+                id: 28,
+                name: 'Pakchoi',
+                nameBn: 'Pakchoi',
+                description: 'Asian leafy green vegetable',
+                descriptionBn: 'Asian shaak sobji',
+                price: 70,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2020/03/21/12/26/vegetables-4953713_1280.jpg',
+                alt: 'Pakchoi - Sobji Haat'
+            },
+            {
+                id: 29,
+                name: 'Button Mushroom',
+                nameBn: 'Button Mushroom',
+                description: 'Fresh white button mushrooms',
+                descriptionBn: 'Taja shada button mushroom',
+                price: 150,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2016/04/25/01/57/mushrooms-1351060_1280.jpg',
+                alt: 'Button Mushroom - Sobji Haat'
+            },
+            {
+                id: 30,
+                name: 'English Cucumber',
+                nameBn: 'English Shosha',
+                description: 'Long seedless cucumber',
+                descriptionBn: 'Lamba seedless shosha',
+                price: 50,
+                category: 'exotic',
+                image: 'https://tse2.mm.bing.net/th/id/OIP.PxdYckDzdKRAtFXFoWOXDQHaHa?pid=Api&P=0&h=180',
+                alt: 'English Cucumber - Sobji Haat'
+            },
+            {
+                id: 31,
+                name: 'Zucchini',
+                nameBn: 'Zucchini',
+                description: 'Green summer squash',
+                descriptionBn: 'Sobuj zucchini',
+                price: 80,
+                category: 'exotic',
+                image: 'https://media.istockphoto.com/id/924389338/photo/close-up-of-fresh-ridge-gourd.jpg?s=2048x2048&w=is&k=20&c=fRfNJM1_1ZHIbjD-3t9zOf03uCRlNdYvrduHvvJC1Bc=',
+                alt: 'Zucchini - Sobji Haat'
+            },
+            {
+                id: 32,
+                name: 'Iceberg Lettuce',
+                nameBn: 'Iceberg Lettuce',
+                description: 'Crisp lettuce for salads',
+                descriptionBn: 'Khara-khara lettuce, salad jonno',
+                price: 60,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2018/06/29/07/26/salad-3505392_1280.jpg',
+                alt: 'Iceberg Lettuce - Sobji Haat'
+            },
+            {
+                id: 33,
+                name: 'Chinese Cabbage',
+                nameBn: 'Chinese Bandhakopi',
+                description: 'Napa cabbage for stir-fries',
+                descriptionBn: 'Chinese bandhakopi, stir-fry jonno',
+                price: 55,
+                category: 'exotic',
+                image: 'https://tse1.mm.bing.net/th/id/OIP.MZw4X5afHoWtzaqEKRHvpgHaHP?pid=Api&P=0&h=180',
+                alt: 'Chinese Cabbage - Sobji Haat'
+            },
+            {
+                id: 34,
+                name: 'Red Cabbage',
+                nameBn: 'Lal Bandhakopi',
+                description: 'Purple-red cabbage for salads',
+                descriptionBn: 'Lal bandhakopi, salad jonno',
+                price: 65,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2019/10/18/15/47/red-cabbage-4559494_1280.jpg',
+                alt: 'Red Cabbage - Sobji Haat'
+            },
+            {
+                id: 35,
+                name: 'Thai Ginger',
+                nameBn: 'Thai Ada',
+                description: 'Aromatic Thai ginger (galangal)',
+                descriptionBn: 'Gondho bhora Thai ada',
+                price: 120,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2018/05/21/12/03/ginger-3418066_1280.jpg',
+                alt: 'Thai Ginger - Sobji Haat'
+            },
+            {
+                id: 36,
+                name: 'Lemon Grass',
+                nameBn: 'Lemon Grass',
+                description: 'Fragrant herb for teas and curries',
+                descriptionBn: 'Gondho bhora lemon grass, cha ar torkari jonno',
+                price: 40,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2015/01/27/23/16/lemon-614349_1280.jpg',
+                alt: 'Lemon Grass - Sobji Haat'
+            },
+            {
+                id: 37,
+                name: 'Mango Ginger',
+                nameBn: 'Aam Ada',
+                description: 'Ginger with mango-like flavor',
+                descriptionBn: 'Aamer gondho wala ada',
+                price: 110,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2019/01/31/10/59/ginger-3966502_1280.jpg',
+                alt: 'Mango Ginger - Sobji Haat'
+            },
+            {
+                id: 38,
+                name: 'Asparagus',
+                nameBn: 'Asparagus',
+                description: 'Tender asparagus spears',
+                descriptionBn: 'Komla asparagus',
+                price: 200,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2019/12/08/18/28/asparagus-4681835_1280.jpg',
+                alt: 'Asparagus - Sobji Haat'
+            },
+            {
+                id: 39,
+                name: 'Thyme',
+                nameBn: 'Thyme',
+                description: 'Aromatic herb for cooking',
+                descriptionBn: 'Gondho bhora thyme, ranna jonno',
+                price: 50,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2013/06/01/03/07/thyme-115349_1280.jpg',
+                alt: 'Thyme - Sobji Haat'
+            },
+            {
+                id: 40,
+                name: 'Rosemary',
+                nameBn: 'Rosemary',
+                description: 'Fragrant herb for roasts and stews',
+                descriptionBn: 'Gondho bhora rosemary, roast ar stew jonno',
+                price: 60,
+                category: 'exotic',
+                image: 'https://tse1.mm.bing.net/th/id/OIP.EXQJvVYiCY0CkdBteZrkdAHaFj?pid=Api&P=0&h=180',
+                alt: 'Rosemary - Sobji Haat'
+            },
+            {
+                id: 41,
+                name: 'Broccoli',
+                nameBn: 'Broccoli',
+                description: 'Fresh green broccoli florets',
+                descriptionBn: 'Taja sobuj broccoli',
+                price: 90,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2016/03/05/19/02/broccoli-1238250_1280.jpg',
+                alt: 'Broccoli - Sobji Haat'
+            },
+            {
+                id: 42,
+                name: 'Lotus Stem',
+                nameBn: 'Lotus Stem',
+                description: 'Crispy lotus stems for stir-fries',
+                descriptionBn: 'Khara-khara lotus stem, stir-fry jonno',
+                price: 120,
+                category: 'exotic',
+                image: 'https://cdn.pixabay.com/photo/2016/07/29/07/36/lotus-1550951_1280.jpg',
+                alt: 'Lotus Stem - Sobji Haat'
+            },
+            
+            // Leafy Greens
+            {
+                id: 43,
+                name: 'Spring Onion',
+                nameBn: 'Spring Onion',
+                description: 'Fresh spring onions with greens',
+                descriptionBn: 'Taja spring onion, sobuj shoho',
+                price: 30,
+                category: 'leafy',
+                image: 'https://cdn.pixabay.com/photo/2017/04/04/17/59/vegetables-2202500_1280.jpg',
+                alt: 'Spring Onion - Sobji Haat'
+            },
+            {
+                id: 44,
+                name: 'Garlic Leaf',
+                nameBn: 'Roshun Pata',
+                description: 'Fresh garlic leaves for flavoring',
+                descriptionBn: 'Taja roshun pata, gondho jonno',
+                price: 40,
+                category: 'leafy',
+                image: 'https://cdn.pixabay.com/photo/2019/03/03/10/11/vegetables-4031508_1280.jpg',
+                alt: 'Garlic Leaf - Sobji Haat'
+            },
+            {
+                id: 45,
+                name: 'Basil Leaf',
+                nameBn: 'Basil Pata',
+                description: 'Aromatic basil leaves',
+                descriptionBn: 'Gondho bhora basil pata',
+                price: 50,
+                category: 'leafy',
+                image: 'https://tse1.mm.bing.net/th/id/OIP.xmd_Vs0Pblc7xJf1N41MjQHaFb?pid=Api&P=0&h=180',
+                alt: 'Basil Leaf - Sobji Haat'
+            },
+            {
+                id: 46,
+                name: 'Parsley',
+                nameBn: 'Parsley',
+                description: 'Fresh parsley for garnishing',
+                descriptionBn: 'Taja parsley, garnishing jonno',
+                price: 45,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/155157821/photo/parsley-bouquet.jpg?s=2048x2048&w=is&k=20&c=Utve-Yy1rUrz8xvitpWnIPfs_9d4-pMup-YRgBZJ6Y0=',
+                alt: 'Parsley - Sobji Haat'
+            },
+            {
+                id: 47,
+                name: 'Leek',
+                nameBn: 'Leek',
+                description: 'Mild onion-like vegetable',
+                descriptionBn: 'Halka peyaj er moto sobji',
+                price: 70,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/638286824/photo/raw-green-organic-leeks.jpg?s=2048x2048&w=is&k=20&c=18w__sx0gAch0-WuJWKj6rxzoQXz1mtcECWly18F8aM=',
+                alt: 'Leek - Sobji Haat'
+            },
+            {
+                id: 48,
+                name: 'Dill Leaf',
+                nameBn: 'Dill Pata',
+                description: 'Aromatic dill leaves',
+                descriptionBn: 'Gondho bhora dill pata',
+                price: 55,
+                category: 'leafy',
+                image: 'https://tse3.mm.bing.net/th/id/OIP.Ijr3Omxf7As46HdaITPqkAHaE6?pid=Api&P=0&h=180',
+                alt: 'Dill Leaf - Sobji Haat'
+            },
+            {
+                id: 49,
+                name: 'Rocket Lettuce',
+                nameBn: 'Rocket Lettuce',
+                description: 'Peppery salad green',
+                descriptionBn: 'Jhaal wala salad shaak',
+                price: 80,
+                category: 'leafy',
+                image: 'https://tse3.mm.bing.net/th/id/OIP.LPfvBQvPS--NMAgjNxmhqAHaHa?pid=Api&P=0&h=180',
+                alt: 'Rocket Lettuce - Sobji Haat'
+            },
+            {
+                id: 50,
+                name: 'Mint',
+                nameBn: 'Pudina Pata',
+                description: 'Fresh mint leaves',
+                descriptionBn: 'Taja pudina pata',
+                price: 35,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/499696575/photo/as.jpg?s=2048x2048&w=is&k=20&c=EWK15g_qDBWKdPRQ3V9HUW0E3iy6wwMBc9SFv7t3XTk=',
+                alt: 'Mint - Sobji Haat'
+            },
+            {
+                id: 51,
+                name: 'Kale',
+                nameBn: 'Kale',
+                description: 'Nutrient-rich leafy green',
+                descriptionBn: 'Poshak shokto sobuj shaak',
+                price: 90,
+                category: 'leafy',
+                image: 'https://media.gettyimages.com/id/1202296635/photo/top-view-of-bowl-of-kale-cutting-board-with-knife-and-chopped-kale.jpg?s=612x612&w=0&k=20&c=q1YQwyoZR18mD1lsS3VFs-v90rACdk5eTuH3eZ10URU=',
+                alt: 'Kale - Sobji Haat'
+            },
+            {
+                id: 52,
+                name: 'Celery Leaf',
+                nameBn: 'Celery Pata',
+                description: 'Aromatic celery leaves',
+                descriptionBn: 'Gondho bhora celery pata',
+                price: 40,
+                category: 'leafy',
+                image: 'https://www.plantfoodathome.com/wp-content/uploads/2021/07/What-to-do-with-Celery-Leaves-Preserving-and-Recipe-Ideas.jpg',
+                alt: 'Celery Leaf - Sobji Haat'
+            },
+            {
+                id: 53,
+                name: 'Lemon Leaf',
+                nameBn: 'Lebu Pata',
+                description: 'Fragrant lemon leaves',
+                descriptionBn: 'Gondho bhora lebu pata',
+                price: 25,
+                category: 'leafy',
+                image: 'https://images.pexels.com/photos/10223092/pexels-photo-10223092.jpeg',
+                alt: 'Lemon Leaf - Sobji Haat'
+            },
+            {
+                id: 54,
+                name: 'English Parsley',
+                nameBn: 'English Parsley',
+                description: 'Curly leaf parsley',
+                descriptionBn: 'Kochi kochi pata wala parsley',
+                price: 50,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/155157821/photo/parsley-bouquet.jpg?s=2048x2048&w=is&k=20&c=Utve-Yy1rUrz8xvitpWnIPfs_9d4-pMup-YRgBZJ6Y0=',
+                alt: 'English Parsley - Sobji Haat'
+            },
+            {
+                id: 55,
+                name: 'Lettuce',
+                nameBn: 'Lettuce',
+                description: 'Crisp lettuce for salads',
+                descriptionBn: 'Khara-khara lettuce, salad jonno',
+                price: 45,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/181072765/photo/lettuce-isolated-isolated-on-white-background.jpg?s=2048x2048&w=is&k=20&c=HmCTYJjqzyH7PmzbMGToa9qkqewYx4e2tJRfelR0feY=',
+                alt: 'Lettuce - Sobji Haat'
+            },
+            {
+                id: 56,
+                name: 'Curry Leaf',
+                nameBn: 'Kari Pata',
+                description: 'Aromatic curry leaves',
+                descriptionBn: 'Gondho bhora kari pata',
+                price: 20,
+                category: 'leafy',
+                image: 'https://media.istockphoto.com/id/136146217/photo/curry-leaves.jpg?s=1024x1024&w=is&k=20&c=XIDBy7R5UISwq0svXe5vtolIIjn0-hTBhRQWhVggA6k=',
+                alt: 'Curry Leaf - Sobji Haat'
+            },
+            
+            // Preservatives
+            {
+                id: 57,
+                name: 'Baby Corn (Preserved)',
+                nameBn: 'Baby Corn (Preserved)',
+                description: 'Canned baby corn',
+                descriptionBn: 'Tin e rakha baby corn',
+                price: 70,
+                category: 'preservatives',
+                image: 'https://up.yimg.com/ib/th/id/OIP.0D6ObD57Au3fZLWjTgx7ewHaE8?pid=Api&rs=1&c=1&qlt=95&w=165&h=110',
+                alt: 'Preserved Baby Corn - Sobji Haat'
+            },
+            {
+                id: 58,
+                name: 'Sweet Corn (Preserved)',
+                nameBn: 'Misti Bhutta (Preserved)',
+                description: 'Canned sweet corn',
+                descriptionBn: 'Tin e rakha misti bhutta',
+                price: 50,
+                category: 'preservatives',
+                image: 'https://up.yimg.com/ib/th/id/OIP.92hkQIBcAApMHg-IzOxfgwHaJG?pid=Api&rs=1&c=1&qlt=95&w=95&h=117',
+                alt: 'Preserved Sweet Corn - Sobji Haat'
+            },
+            {
+                id: 59,
+                name: 'Mushroom (Preserved)',
+                nameBn: 'Mushroom (Preserved)',
+                description: 'Canned mushrooms',
+                descriptionBn: 'Tin e rakha mushroom',
+                price: 120,
+                category: 'preservatives',
+                image: 'https://tse4.mm.bing.net/th/id/OIP.BHFGNiAgVRLxOD490A2w2gHaHa?pid=Api&P=0&h=180',
+                alt: 'Preserved Mushroom - Sobji Haat'
+            },
+            {
+                id: 60,
+                name: 'Pineapple Slice',
+                nameBn: 'Anarosh Slice',
+                description: 'Canned pineapple slices',
+                descriptionBn: 'Tin e rakha anarosh slice',
+                price: 80,
+                category: 'preservatives',
+                image: 'https://sp.yimg.com/ib/th/id/OIP.Qma0uEOgp7-v1MUZK3Bj3AHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1',
+                alt: 'Pineapple Slice - Sobji Haat'
+            },
+            {
+                id: 61,
+                name: 'Fruit Cocktail',
+                nameBn: 'Fruit Cocktail',
+                description: 'Mixed fruits in syrup',
+                descriptionBn: 'Misti jole mixed fol',
+                price: 110,
+                category: 'preservatives',
+                image: 'https://up.yimg.com/ib/th/id/OIP.2porueIPAL6p5e6BvXD8MgHaE7?pid=Api&rs=1&c=1&qlt=95&w=170&h=113',
+                alt: 'Fruit Cocktail - Sobji Haat'
+            },
+            
+            // Other Products
+            {
+                id: 62,
+                name: 'Rice Wine',
+                nameBn: 'Rice Wine',
+                description: 'Traditional rice wine',
+                descriptionBn: 'Prothomik rice wine',
+                price: 200,
+                category: 'other',
+                image: 'https://s.yimg.com/fz/api/res/1.2/qsY8KC8_hPAYcqaaPW_dmA--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI2MDtxPTgwO3c9MzMy/https://s.yimg.com/zb/imgv1/30a0c68b-e6ce-37f9-923b-e182365ff5d1/t_500x300',
+                alt: 'Rice Wine - Sobji Haat'
+            },
+            {
+                id: 63,
+                name: 'Green Peas',
+                nameBn: 'Matar',
+                description: 'Frozen green peas',
+                descriptionBn: 'Frozen matar',
+                price: 60,
+                category: 'other',
+                image: 'https://tiimg.tistatic.com/fp/1/005/736/packed-roasted-green-pea-864.jpg',
+                alt: 'Green Peas - Sobji Haat'
+            },
+            {
+                id: 64,
+                name: 'French Fries',
+                nameBn: 'French Fries',
+                description: 'Frozen french fries',
+                descriptionBn: 'Frozen french fries',
+                price: 90,
+                category: 'other',
+                image: 'https://up.yimg.com/ib/th/id/OIP.InKrIqmrEfj9tcMQQTG0IAHaHa?pid=Api&rs=1&c=1&qlt=95&w=105&h=105',
+                alt: 'French Fries - Sobji Haat'
+            },
+            {
+                id: 65,
+                name: 'Panko Bread Crumb',
+                nameBn: 'Panko Bread Crumb',
+                description: 'Japanese-style breadcrumbs',
+                descriptionBn: 'Japanese-style breadcrumbs',
+                price: 120,
+                category: 'other',
+                image: 'https://tse2.mm.bing.net/th/id/OIP.ZX1lQDdCFUB0y6dq7DC8AQHaKa?pid=Api&P=0&h=180',
+                alt: 'Panko Bread Crumb - Sobji Haat'
+            },
+            {
+                id: 66,
+                name: 'Tomato Puree',
+                nameBn: 'Tomato Puree',
+                description: 'Concentrated tomato puree',
+                descriptionBn: 'Gadha tomato puree',
+                price: 70,
+                category: 'other',
+                image: 'https://images.pexels.com/photos/3832360/pexels-photo-3832360.jpeg',
+                alt: 'Tomato Puree - Sobji Haat'
             }
         ];
         
@@ -1400,6 +2343,8 @@
         let currentLang = localStorage.getItem('language') || 'en';
         let theme = localStorage.getItem('theme') || 'light';
         let hasDiscount = localStorage.getItem('hasDiscount') === 'true';
+        let currentCategory = 'all';
+        let heroSlideIndex = 0;
         let checkoutData = null;
         
         // ==========================================
@@ -1409,10 +2354,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             initializeTheme();
             initializeLanguage();
+            renderCategories();
+            renderCategoryTabs();
             renderProducts();
             renderCarousel();
             updateCartBadge();
             setupEventListeners();
+            startHeroSlideshow();
             showOfferPopup();
         });
         
@@ -1423,6 +2371,19 @@
         
         function initializeLanguage() {
             updateLanguage();
+        }
+        
+        // ==========================================
+        // HERO SLIDESHOW
+        // ==========================================
+        
+        function startHeroSlideshow() {
+            setInterval(() => {
+                const slides = document.querySelectorAll('.hero-slide');
+                slides[heroSlideIndex].classList.remove('active');
+                heroSlideIndex = (heroSlideIndex + 1) % slides.length;
+                slides[heroSlideIndex].classList.add('active');
+            }, 5000);
         }
         
         // ==========================================
@@ -1438,7 +2399,14 @@
         
         function updateThemeIcon() {
             const themeBtn = document.getElementById('themeToggle');
-            themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
+            const mobileThemeBtn = document.getElementById('mobileThemeToggle');
+            if (theme === 'light') {
+                themeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+                if (mobileThemeBtn) mobileThemeBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            } else {
+                themeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+                if (mobileThemeBtn) mobileThemeBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            }
         }
         
         // ==========================================
@@ -1460,6 +2428,9 @@
             // Update products
             renderProducts();
             
+            // Update categories
+            renderCategories();
+            
             // Update cart if open
             if (document.getElementById('cartModal').classList.contains('active')) {
                 renderCart();
@@ -1471,12 +2442,154 @@
         }
         
         // ==========================================
+        // SEARCH FUNCTIONALITY
+        // ==========================================
+        
+        function performSearch(query, searchInputId, resultsContainerId) {
+            const searchInput = document.getElementById(searchInputId);
+            const resultsContainer = document.getElementById(resultsContainerId);
+            
+            if (query.length < 2) {
+                resultsContainer.classList.remove('active');
+                return;
+            }
+            
+            const filteredProducts = products.filter(product => {
+                const name = currentLang === 'en' ? product.name : product.nameBn;
+                const description = currentLang === 'en' ? product.description : product.descriptionBn;
+                return name.toLowerCase().includes(query.toLowerCase()) || 
+                       description.toLowerCase().includes(query.toLowerCase());
+            });
+            
+            if (filteredProducts.length === 0) {
+                resultsContainer.innerHTML = `<div class="search-result-item">${t('No products found', 'Kono ponyo paoa jayni')}</div>`;
+            } else {
+                resultsContainer.innerHTML = filteredProducts.map(product => `
+                    <div class="search-result-item" onclick="selectSearchResult(${product.id}, '${searchInputId}')">
+                        <img src="${product.image}" alt="${product.alt}">
+                        <div class="search-result-info">
+                            <h4>${currentLang === 'en' ? product.name : product.nameBn}</h4>
+                            <p>${currentLang === 'en' ? product.description : product.descriptionBn}</p>
+                            <p class="price">₹${product.price}/kg</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            resultsContainer.classList.add('active');
+        }
+        
+        function selectSearchResult(productId, searchInputId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            // Close search results
+            document.getElementById('searchResults').classList.remove('active');
+            document.getElementById('mobileSearchResults').classList.remove('active');
+            document.getElementById('mobileSearchOverlay').classList.remove('active');
+            
+            // Clear search input
+            document.getElementById(searchInputId).value = '';
+            
+            // Filter products to show only the selected one
+            currentCategory = 'all';
+            renderCategoryTabs();
+            const filteredProducts = products.filter(p => p.id === productId);
+            renderFilteredProducts(filteredProducts);
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function renderFilteredProducts(filteredProducts) {
+            const grid = document.getElementById('productsGrid');
+            
+            if (filteredProducts.length === 0) {
+                grid.innerHTML = `<div class="text-center" style="grid-column: 1 / -1; padding: 2rem;">
+                    <h3>${t('No products found', 'Kono ponyo paoa jayni')}</h3>
+                    <p>${t('Try searching with different keywords', 'Onno keyword diye khujun')}</p>
+                </div>`;
+                return;
+            }
+            
+            grid.innerHTML = filteredProducts.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.alt}" class="product-image" loading="lazy">
+                    <h3 class="product-name">${currentLang === 'en' ? product.name : product.nameBn}</h3>
+                    <p class="product-description">${currentLang === 'en' ? product.description : product.descriptionBn}</p>
+                    <p class="product-price">₹${product.price}/${t('kg', 'kg')}</p>
+                    <div class="product-controls">
+                        <div class="unit-selector">
+                            <input type="number" min="1" value="1" id="qty-${product.id}" aria-label="${t('Quantity', 'Poriman')}">
+                            <select id="unit-${product.id}" aria-label="${t('Unit', 'Unit')}">
+                                ${Object.entries(UNITS).map(([key, unit]) => `
+                                    <option value="${key}">${unit.label}</option>
+                                `).join('')}
+                            </select>
+                        </div>
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})" data-en="Add to Cart" data-bn="Gacha-e Rakho">${t('Add to Cart', 'Gacha-e Rakho')}</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // ==========================================
+        // RENDER CATEGORIES
+        // ==========================================
+        
+        function renderCategories() {
+            const track = document.getElementById('categoriesTrack');
+            const categoryItems = categories.map(category => `
+                <div class="category-card" onclick="filterProducts('${category.id}')">
+                    <div class="category-icon">${category.icon}</div>
+                    <h3 class="category-name">${currentLang === 'en' ? category.name : category.nameBn}</h3>
+                </div>
+            `).join('');
+            
+            // Duplicate for infinite scroll
+            track.innerHTML = categoryItems + categoryItems;
+        }
+        
+        // ==========================================
+        // RENDER CATEGORY TABS
+        // ==========================================
+        
+        function renderCategoryTabs() {
+            const tabsContainer = document.getElementById('categoryTabs');
+            const allTab = `<div class="category-tab ${currentCategory === 'all' ? 'active' : ''}" onclick="filterProducts('all')">${t('All Products', 'Sob Ponyo')}</div>`;
+            
+            const categoryTabs = categories.map(category => `
+                <div class="category-tab ${currentCategory === category.id ? 'active' : ''}" onclick="filterProducts('${category.id}')">
+                    ${currentLang === 'en' ? category.name : category.nameBn}
+                </div>
+            `).join('');
+            
+            tabsContainer.innerHTML = allTab + categoryTabs;
+        }
+        
+        // ==========================================
+        // FILTER PRODUCTS BY CATEGORY
+        // ==========================================
+        
+        function filterProducts(categoryId) {
+            currentCategory = categoryId;
+            renderCategoryTabs();
+            renderProducts();
+        }
+        
+        // ==========================================
         // RENDER PRODUCTS
         // ==========================================
         
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
-            grid.innerHTML = products.map(product => `
+            let filteredProducts = products;
+            
+            if (currentCategory !== 'all') {
+                filteredProducts = products.filter(product => product.category === currentCategory);
+            }
+            
+            grid.innerHTML = filteredProducts.map(product => `
                 <div class="product-card">
                     <img src="${product.image}" alt="${product.alt}" class="product-image" loading="lazy">
                     <h3 class="product-name">${currentLang === 'en' ? product.name : product.nameBn}</h3>
@@ -1762,9 +2875,11 @@
         function setupEventListeners() {
             // Theme toggle
             document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+            document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
             
             // Language toggle
             document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+            document.getElementById('mobileLangToggle').addEventListener('click', toggleLanguage);
             
             // Hamburger menu
             const hamburger = document.getElementById('hamburger');
@@ -1780,6 +2895,31 @@
                     hamburger.classList.remove('active');
                     nav.classList.remove('active');
                 });
+            });
+            
+            // Search functionality
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                performSearch(e.target.value, 'searchInput', 'searchResults');
+            });
+            
+            document.getElementById('mobileSearchInput').addEventListener('input', (e) => {
+                performSearch(e.target.value, 'mobileSearchInput', 'mobileSearchResults');
+            });
+            
+            // Mobile search overlay
+            document.getElementById('mobileSearchBtn').addEventListener('click', () => {
+                document.getElementById('mobileSearchOverlay').classList.add('active');
+            });
+            
+            document.getElementById('mobileSearchClose').addEventListener('click', () => {
+                document.getElementById('mobileSearchOverlay').classList.remove('active');
+            });
+            
+            // Close search results when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.search-container')) {
+                    document.getElementById('searchResults').classList.remove('active');
+                }
             });
             
             // Cart modal
@@ -1807,6 +2947,14 @@
             
             // WhatsApp button
             document.getElementById('whatsappBtn').addEventListener('click', () => {
+                if (cart.length > 0) {
+                    sendWhatsAppOrder();
+                } else {
+                    window.open(`https://wa.me/${CONTACT_INFO.phone.replace('+', '')}`, '_blank');
+                }
+            });
+            
+            document.getElementById('mobileWhatsappBtn').addEventListener('click', () => {
                 if (cart.length > 0) {
                     sendWhatsAppOrder();
                 } else {
