@@ -178,6 +178,7 @@
             color: var(--text-color);
             transition: var(--transition);
             font-weight: 500;
+            padding: 0.5rem 0;
         }
         
         .nav a:hover {
@@ -290,6 +291,7 @@
                 transition: right 0.3s ease;
                 align-items: flex-start;
                 z-index: 1001;
+                gap: 0;
             }
             
             .nav.active {
@@ -300,6 +302,25 @@
                 width: 100%;
                 padding: 1rem 0;
                 border-bottom: 1px solid var(--border-color);
+                font-size: 1.1rem;
+            }
+            
+            .mobile-nav-actions {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                width: 100%;
+                margin-top: 1rem;
+            }
+            
+            .mobile-nav-actions .icon-btn {
+                flex: 1;
+                min-width: 45%;
+                text-align: center;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+                padding: 0.75rem;
             }
             
             .header-actions .icon-btn:not(#cartBtn) {
@@ -312,6 +333,20 @@
             
             .mobile-search-btn {
                 display: block !important;
+            }
+            
+            /* Mobile Header Layout */
+            .header-container {
+                flex-wrap: wrap;
+                padding: 0.75rem;
+            }
+            
+            .logo {
+                flex: 1;
+            }
+            
+            .header-actions {
+                gap: 0.5rem;
             }
         }
         
@@ -1190,12 +1225,25 @@
         
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero {
+                margin-top: 60px;
+                height: 70vh;
+                min-height: 500px;
+            }
+            
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1rem;
             }
             
             .hero p {
-                font-size: 1.2rem;
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-content {
+                padding: 0 1.5rem;
             }
             
             .carousel-card {
@@ -1218,6 +1266,61 @@
             .mobile-search-btn {
                 display: block !important;
             }
+            
+            /* Mobile Header Search */
+            .header-container {
+                padding: 0.75rem;
+            }
+            
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .header-actions {
+                gap: 0.5rem;
+            }
+            
+            .icon-btn {
+                padding: 0.4rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-tabs {
+                gap: 0.5rem;
+            }
+            
+            .category-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
         }
         
         /* Utility Classes */
@@ -1235,6 +1338,22 @@
         
         .mobile-search-btn {
             display: none;
+        }
+        
+        /* Mobile Navigation Overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .nav-overlay.active {
+            display: block;
         }
     </style>
 </head>
@@ -1254,6 +1373,8 @@
                 </button>
                 <div class="search-results" id="searchResults"></div>
             </div>
+            
+            <div class="nav-overlay" id="navOverlay"></div>
             
             <nav class="nav" id="nav">
                 <a href="#" data-en="Home" data-bn="Bari">Home</a>
@@ -1928,7 +2049,7 @@
                 descriptionBn: 'Lamba seedless shosha',
                 price: 50,
                 category: 'exotic',
-                image: 'https://tse2.mm.bing.net/th/id/OIP.PxdYckDzdKRAtFXFoWOXDQHaHa?pid=Api&P=0&h=180',
+                image: 'https://tse2.mm.bing.net/th/id/OIP.PxdYckDzdKRAtFXFoWOXDQHaE8?pid=Api&rs=1&c=1&qlt=95&w=165&h=110',
                 alt: 'English Cucumber - Sobji Haat'
             },
             {
@@ -2884,9 +3005,19 @@
             // Hamburger menu
             const hamburger = document.getElementById('hamburger');
             const nav = document.getElementById('nav');
+            const navOverlay = document.getElementById('navOverlay');
+            
             hamburger.addEventListener('click', () => {
                 hamburger.classList.toggle('active');
                 nav.classList.toggle('active');
+                navOverlay.classList.toggle('active');
+            });
+            
+            // Close nav on overlay click
+            navOverlay.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                navOverlay.classList.remove('active');
             });
             
             // Close nav on link click
@@ -2894,6 +3025,7 @@
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('active');
                     nav.classList.remove('active');
+                    navOverlay.classList.remove('active');
                 });
             });
             
