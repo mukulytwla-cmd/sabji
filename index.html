@@ -590,102 +590,6 @@
             color: var(--text-color);
         }
         
-        /* Carousel */
-        .carousel-section {
-            padding: 2rem 1rem;
-            background-color: var(--bg-color);
-            overflow: hidden;
-        }
-        
-        .carousel-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .carousel-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-        }
-        
-        .carousel-wrapper {
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .carousel-track {
-            display: flex;
-            gap: 1.5rem;
-            animation: scroll 30s linear infinite;
-            width: max-content;
-        }
-        
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
-        
-        .carousel-card {
-            min-width: 300px;
-            background-color: var(--surface-color);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            padding: 1.5rem;
-            transition: var(--transition);
-        }
-        
-        .carousel-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .carousel-card.offer {
-            background: linear-gradient(135deg, var(--accent-color), #ff9500);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            min-height: 250px;
-        }
-        
-        .carousel-card.offer h3 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .carousel-card.offer p {
-            font-size: 1.1rem;
-        }
-        
-        .carousel-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        
-        .carousel-card h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .carousel-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .carousel-card .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            margin-bottom: 1rem;
-        }
-        
         /* Products Section */
         .products-section {
             padding: 4rem 1rem;
@@ -1246,10 +1150,6 @@
                 padding: 0 1.5rem;
             }
             
-            .carousel-card {
-                min-width: 250px;
-            }
-            
             .category-card {
                 min-width: 200px;
             }
@@ -1362,7 +1262,7 @@
     <header class="header">
         <div class="header-container">
             <a href="#" class="logo">
-                <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=100&h=100&fit=crop&crop=center" alt="Sobji Haat Logo" class="logo-img">
+                <img src="logo.jpg" alt="Sobji Haat Logo" class="logo-img">
             </a>
             
             <!-- Desktop Search -->
@@ -1380,7 +1280,6 @@
                 <a href="#" data-en="Home" data-bn="Bari">Home</a>
                 <a href="#categories" data-en="Categories" data-bn="Categories">Categories</a>
                 <a href="#products" data-en="Products" data-bn="Pণyo">Products</a>
-                <a href="#offer" data-en="Offer" data-bn="Offer">Offer</a>
                 <a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a>
                 <a href="#map" data-en="Map/Review" data-bn="Map/Review">Map/Review</a>
                 <div class="mobile-nav-actions">
@@ -1458,10 +1357,10 @@
         <div class="hero-content">
             <h1>
                 <span class="typing-container">
-                    <span class="typing-text" data-en="Fresh Vegetables Delivered Daily" data-bn="Roj Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</span>
+                    <span class="typing-text" data-en="Fresh and organic" data-bn="Taja Sobji Ghor-e Pathano">Fresh Vegetables Delivered Daily</span>
                 </span>
             </h1>
-            <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms to your doorstep</p>
+            <p data-en="Quality produce from local farms to your doorstep" data-bn="Nijer khete theke taja sobji apnar ghore">Quality produce from local farms </p>
             <button class="btn" id="shopNowBtn" data-en="Shop Now" data-bn="Kinte Cholo">Shop Now</button>
         </div>
     </section>
@@ -1473,23 +1372,6 @@
             <div class="categories-wrapper">
                 <div class="categories-track" id="categoriesTrack">
                     <!-- Categories will be populated by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Carousel Section -->
-    <section class="carousel-section" id="offer">
-        <div class="carousel-container">
-            <h2 class="carousel-title" data-en="Special Offers & Featured Products" data-bn="Bikhyato Offer ar Ponyo">Special Offers & Featured Products</h2>
-            <div class="carousel-wrapper">
-                <div class="carousel-track" id="carouselTrack">
-                    <!-- Offer Card -->
-                    <div class="carousel-card offer">
-                        <h3 data-en="5% OFF" data-bn="5% Chhad">5% OFF</h3>
-                        <p data-en="Leave a Google Review & Get 5% Discount!" data-bn="Google Review din aar 5% Chhad pan!">Leave a Google Review & Get 5% Discount!</p>
-                    </div>
-                    <!-- Carousel will be populated by JavaScript -->
                 </div>
             </div>
         </div>
@@ -1575,7 +1457,6 @@
                 <h3 data-en="Quick Links" data-bn="Joldi Links">Quick Links</h3>
                 <p><a href="#categories" data-en="Categories" data-bn="Categories">Categories</a></p>
                 <p><a href="#products" data-en="Products" data-bn="Ponyo">Products</a></p>
-                <p><a href="#offer" data-en="Offers" data-bn="Offer">Offers</a></p>
                 <p><a href="#contact" data-en="Contact" data-bn="Jogajog">Contact</a></p>
             </div>
             
@@ -2478,7 +2359,6 @@
             renderCategories();
             renderCategoryTabs();
             renderProducts();
-            renderCarousel();
             updateCartBadge();
             setupEventListeners();
             startHeroSlideshow();
@@ -2729,38 +2609,6 @@
                     </div>
                 </div>
             `).join('');
-        }
-        
-        // ==========================================
-        // CAROUSEL
-        // ==========================================
-        
-        function renderCarousel() {
-            const track = document.getElementById('carouselTrack');
-            const featuredProducts = products.slice(0, 5);
-            
-            const items = [
-                `<div class="carousel-card offer">
-                    <h3>5% ${t('OFF', 'Chhad')}</h3>
-                    <p>${t('Leave a Google Review & Get 5% Discount!', 'Google Review din aar 5% Chhad pan!')}</p>
-                </div>`,
-                ...featuredProducts.map(p => `
-                    <div class="carousel-card">
-                        <img src="${p.image}" alt="${p.alt}" loading="lazy">
-                        <h3>${currentLang === 'en' ? p.name : p.nameBn}</h3>
-                        <p>${currentLang === 'en' ? p.description : p.descriptionBn}</p>
-                        <p class="price">₹${p.price}/${t('kg', 'kg')}</p>
-                        <button class="btn" onclick="scrollToProducts()">${t('View Product', 'Dekho')}</button>
-                    </div>
-                `)
-            ];
-            
-            // Duplicate for infinite scroll
-            track.innerHTML = items.join('') + items.join('');
-        }
-        
-        function scrollToProducts() {
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         }
         
         // ==========================================
@@ -3071,7 +2919,7 @@
             
             // Shop now button
             document.getElementById('shopNowBtn').addEventListener('click', () => {
-                scrollToProducts();
+                document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
                 if (!hasDiscount && !localStorage.getItem('offerShown')) {
                     showOfferPopup();
                 }
