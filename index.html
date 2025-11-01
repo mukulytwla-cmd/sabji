@@ -150,32 +150,67 @@
             color: #007BFF;
         }
         
+        .category-section {
+            background-color: #55d21c;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 15px 15px 5px;
+        }
+        
+        .category-images {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        
+        .category-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid #fdf900;
+            transition: all 0.3s ease;
+        }
+        
+        .category-image:hover {
+            transform: scale(1.1);
+            border-color: #fb1302;
+        }
+        
+        .category-image.active {
+            border-color: #fb1302;
+            box-shadow: 0 0 10px rgba(251, 19, 2, 0.5);
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .category-buttons {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            padding: 15px;
-            background-color: #55d21c;
-            border-bottom: 1px solid #f0f0f0;
+            gap: 8px;
         }
         
         .category-btn {
             background-color: #fdf900;
             color: #fb1302;
             border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 18px;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             flex: 1;
-            min-width: 100px;
+            min-width: 4px;
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
+
         .category-btn:hover, .category-btn.active {
             background-color: #26734d;
             color: white;
@@ -184,12 +219,106 @@
         .products-container {
             padding: 15px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+            background-color: #59E659;
+        }
+        
+        /* 🌿 Reviews Section Style */
+        .reviews-section {
+            background: linear-gradient(135deg, #e8f5e9, #ffffff);
+            padding: 50px 10px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .review-title {
+            color: #2e7d32;
+            font-size: 28px;
+            margin-bottom: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .review-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .review-container::-webkit-scrollbar { display: none; } /* Chrome */
+
+        .review-card {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .review-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 20px rgba(76, 175, 80, 0.4);
+        }
+        .review-card p {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.4;
+        }
+        .review-card h4 {
+            margin-top: 10px;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+        .stars {
+            color: gold;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        /* 🌟 Counter + Review Button */
+        .review-stats {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .counter {
+            font-size: 30px;
+            color: #2e7d32;
+            font-weight: 700;
+            text-align: center;
+        }
+        .counter p {
+            font-size: 16px;
+            color: #444;
+            margin: 5px 0 0;
+        }
+
+        .review-btn {
+            background: linear-gradient(135deg, #43a047, #1b5e20);
+            color: #fff;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .review-btn:hover {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #66bb6a, #2e7d32);
         }
         
         .product-card {
-            background: white;
+            background: #55d21c;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -297,7 +426,7 @@
         
         .sticky-cart-btn {
             position: fixed;
-            bottom: 20px;
+            bottom: 80px;
             right: 20px;
             background: #e74c3c;
             color: white;
@@ -558,6 +687,100 @@
             margin-bottom: 15px;
         }
         
+        .reviews-section {
+            padding: 50px 20px;
+            background: #f8f9fa;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+        }
+        .review-title {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #2f7a4c;
+        }
+
+        .review-slider-container {
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .review-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 20px;
+        }
+
+        .review-card {
+            flex: 0 0 300px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        .review-card p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        .review-card h4 {
+            font-size: 0.85em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .review-card .stars {
+            font-size: 1em;
+            color: #ffbf00;
+        }
+
+        /* Slider Dots */
+        .review-dots {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .review-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .review-dots span.active {
+            background: #2f7a4c;
+        }
+
+        /* Counter + Button */
+        .review-stats {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .counter span {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2f7a4c;
+        }
+        .review-btn {
+            background: #2f7a4c;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .review-btn:hover {
+            background: #1e5230;
+        }
+        
         .offer-details {
             background: #fff9e6;
             padding: 15px;
@@ -635,38 +858,6 @@
             color: #2e7d32;
         }
         
-        /* Mobile-specific adjustments */
-        @media (max-width: 414px) {
-            body {
-                box-shadow: none;
-            }
-            
-            .category-btn {
-                min-width: 70px;
-                font-size: 14px;
-                padding: 10px 15px;
-            }
-            
-            .products-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        /* Loading animation */
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-        }
-        
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        
         .notification {
             position: fixed;
             top: 20px;
@@ -680,55 +871,655 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             display: none;
         }
+        
+        /* Unit display for different product types */
+        .unit-display {
+            font-size: 12px;
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        /* About Us Page Styles */
+        .about-page {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            max-width: 414px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .about-title {
+            font-size: 24px;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .about-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .about-content {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card {
+            background: #f5f9f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #55d21c;
+        }
+        
+        .feature-icon {
+            font-size: 24px;
+            color: #55d21c;
+            margin-bottom: 10px;
+        }
+        
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .back-to-home {
+            background: #55d21c;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        .back-to-home:hover {
+            background: #4ab319;
+        }
+        
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            max-width: 414px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+        
+        .admin-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .admin-title {
+            font-size: 24px;
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .admin-login {
+            background: #f5f9f5;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-dashboard {
+            display: none;
+        }
+        
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .admin-tab {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-tab.active {
+            background: #55d21c;
+            color: white;
+        }
+        
+        .admin-tab-content {
+            display: none;
+        }
+        
+        .admin-tab-content.active {
+            display: block;
+        }
+        
+        .product-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .admin-product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            background: #f9f9f9;
+            margin-bottom: 8px;
+            border-radius: 5px;
+        }
+        
+        .admin-product-info {
+            flex: 1;
+        }
+        
+        .admin-product-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+        
+        .admin-product-details {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .admin-product-image {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .admin-product-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .admin-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .edit-btn {
+            background: #3498db;
+            color: white;
+        }
+        
+        .edit-btn:hover {
+            background: #2980b9;
+        }
+        
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+        
+        .save-btn {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: #27ae60;
+        }
+        
+        .cancel-btn {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .cancel-btn:hover {
+            background: #7f8c8d;
+        }
+        
+        .add-product-form {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .form-row input, .form-row select {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: #f5f9f5;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #55d21c;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .admin-search {
+            margin-bottom: 15px;
+        }
+        
+        .admin-search input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .category-filter {
+            margin-bottom: 15px;
+        }
+        
+        .category-filter select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .edit-product-form {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 1px solid #ddd;
+        }
+        
+        .edit-product-form h4 {
+            margin-bottom: 10px;
+            color: #2e7d32;
+        }
     </style>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#" class="nav-home">HOME</a>
-            <a href="#" class="nav-about">ABOUT US</a>
-        </nav>
-    </header>
-    
-    <div class="hero-section">
+    <!-- Main App (Home Page) -->
+    <div class="main-app">
+        <header>
+            <nav>
+                <a href="#" class="nav-home" onclick="showHomePage()">HOME</a>
+                <a href="#" class="nav-about" onclick="showAboutPage()">ABOUT US</a>
+            </nav>
+        </header>
+        
+        <div class="hero-section">
+            <div class="hero-image">
+                <img src="hero.jpg" alt="Fresh Vegetables">
+            </div>
+            <div class="icons-container">
+                <i class="icon whatsapp fab fa-whatsapp" onclick="openWhatsApp()"></i>
+                <i class="icon facebook fab fa-facebook" onclick="openFacebook()"></i>
+                <i class="icon instagram fab fa-instagram" onclick="openInstagram()"></i>
+                <i class="icon review fas fa-star" onclick="openGoogleReview()"></i>
+                <i class="icon cart fas fa-shopping-cart" onclick="openCart()"></i>
+            </div>
+        </div>
+      
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search products..." id="searchInput">
+            <i class="search-icon fas fa-search" id="searchIcon"></i>
+        </div>
+        
+        <div class="category-section">
+            <div class="category-images">
+                <div class="category-image active" data-category="indian" onclick="toggleCategory('indian')">
+                    <img src="https://www.authenticindiatours.com/app/uploads/2024/10/Indian-Vegetables-1400-collage-1400x550-c-default.jpg" alt="Indian Vegetables">
+                </div>
+                <div class="category-image" data-category="exotic" onclick="toggleCategory('exotic')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMH5MJsCrzs3jDM8qUsVtIP-jQXcB4ZE5yGBiJ6d188_cOki98fZJhetn_J7yy2ObMhiyh&s" alt="Exotic Vegetables">
+                </div>
+                <div class="category-image" data-category="leafy" onclick="toggleCategory('leafy')">
+                    <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&h=500&fit=crop" alt="Leafy Vegetables">
+                </div>
+                <div class="category-image" data-category="others" onclick="toggleCategory('others')">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZhjUByzURNwXmKWFu0n8zjwnpSaMIWKmy_gl8OrNeWX9N0SDRjRq8Sek&s" alt="Other Products">
+                </div>
+            </div>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="indian" onclick="loadCategory('indian')">Indian</button>
+                <button class="category-btn" data-category="exotic" onclick="loadCategory('exotic')">Exotic</button>
+                <button class="category-btn" data-category="leafy" onclick="loadCategory('leafy')">Leafy</button>
+                <button class="category-btn" data-category="others" onclick="loadCategory('others')">Others</button>
+            </div>
+        </div>
+       
+        <div class="products-container" id="productsContainer">
+            <!-- Products will be loaded here dynamically -->
+        </div>
+        
         <div class="hero-image">
-            <img src="hero.jpg" alt="Fresh Vegetables">
+            <img src="mission.jpg" alt="Fresh Vegetables">
         </div>
-        <div class="icons-container">
-            <i class="icon whatsapp fab fa-whatsapp" onclick="openWhatsApp()"></i>
-            <i class="icon facebook fab fa-facebook" onclick="openFacebook()"></i>
-            <i class="icon instagram fab fa-instagram" onclick="openInstagram()"></i>
-            <i class="icon review fas fa-star" onclick="openGoogleReview()"></i>
-            <i class="icon cart fas fa-shopping-cart" onclick="openCart()"></i>
+        
+        <button class="sticky-cart-btn" onclick="openCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count" id="cartCount">0</span>
+        </button>
+        
+        <!-- 🌿 CUSTOMER REVIEWS SLIDER SECTION -->
+        <section class="reviews-section">
+            <h2 class="review-title">💚 What Our Customers Say</h2>
+
+            <div class="review-slider-container">
+                <div class="review-slider" id="reviewSlider">
+                    <!-- Review Cards -->
+                    <div class="review-card">
+                        <p>"Best place to buy fresh vegetables for my restaurant — quality is always top-notch!"</p>
+                        <h4>— Chef Arjun, The Green Plate</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Timely delivery every morning! The bulk orders are handled very professionally."</p>
+                        <h4>— Suman, Hotel Paradise</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Fresh vegetables every morning! SobjiHaat has made my home cooking so much easier."</p>
+                        <h4>— Anjali Das, Kolkata</h4>
+                        <div class="stars">⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Amazing freshness and great pricing — SobjiHaat has made my daily shopping easy!"</p>
+                        <h4>— Neha Sharma</h4>
+                        <div class="stars">⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"Reliable and honest service. Vegetables are always clean and well packed."</p>
+                        <h4>— Rajesh Kumar, Catering Hub</h4>
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-card">
+                        <p>"As a restaurant owner, I save both time and money. Highly recommend SobjiHaat!"</p>
+                        <h4>— Priya Singh, Urban Tadka</h4>
+                        <div class="stars">⭐⭐⭐⭐</div>
+                    </div>
+                </div>
+
+                <!-- Slider Dots -->
+                <div class="review-dots" id="reviewDots"></div>
+            </div>
+
+            <div class="review-stats">
+                <div class="counter">
+                    <span id="happyCount">0</span>+
+                    <p>Happy Customers</p>
+                </div>
+                <button class="review-btn" onclick="window.open('https://www.google.com/maps/place/SobjiHaat/reviews', '_blank')">
+                    ⭐ Leave a Google Review
+                </button>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 Sobji Haat. All rights reserved.</p>
+            <p>49/9 Jorabagan Road, Kolkata, West Bengal</p>
+        </footer>
+    </div>
+    
+    <!-- About Us Page -->
+    <div class="about-page" id="aboutPage">
+        <div class="about-header">
+            <h1 class="about-title">About Sabji Haat</h1>
+            <img src="hero.jpg" alt="About Sabji Haat" class="about-image">
+        </div>
+        
+        <div class="about-content">
+            <p>Welcome to Sabji Haat, your trusted partner for fresh, high-quality vegetables delivered right to your doorstep. Established in 2020, we've been serving the Kolkata community with the freshest produce sourced directly from local farmers.</p>
+            
+            <p>Our mission is simple: to provide fresh, healthy, and affordable vegetables while supporting local agriculture and reducing food waste. We believe that everyone deserves access to quality produce, and we're committed to making that a reality.</p>
+            
+            <h3>Why Choose Sabji Haat?</h3>
+            <div class="about-features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="feature-title">Farm Fresh</div>
+                    <p>Direct from farms to your kitchen</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="feature-title">Fast Delivery</div>
+                    <p>next day morning delivery available</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <div class="feature-title">Best Prices</div>
+                    <p>Competitive pricing guaranteed</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="feature-title">Quality Assured</div>
+                    <p>Rigorous quality checks</p>
+                </div>
+            </div>
+            
+            <h3>Our Story</h3>
+            <p>Sabji Haat began as a small family business with a simple vision: to bridge the gap between local farmers and urban consumers. What started as a single vegetable cart has now grown into a trusted online platform serving hundreds of customers daily.</p>
+            
+            <h3>Admin Access</h3>
+           
+            <button class="back-to-home" onclick="showAdminPanel()">Access Admin Panel</button>
+        </div>
+        
+        <button class="back-to-home" onclick="showHomePage()">Back to Home</button>
+    </div>
+    
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h1 class="admin-title">Admin Panel</h1>
+            <p>Manage products, prices, and inventory</p>
+        </div>
+        
+        <div class="admin-login" id="adminLogin">
+            <h3>Admin Login</h3>
+            <div class="form-group">
+                <label for="adminUsername">Username</label>
+                <input type="text" id="adminUsername" placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <label for="adminPassword">Password</label>
+                <input type="password" id="adminPassword" placeholder="Enter password">
+            </div>
+            <button class="checkout-btn" onclick="adminLogin()">Login</button>
+            <button class="back-to-home" onclick="showAboutPage()" style="margin-top: 10px; background: #95a5a6;">Back to About Us</button>
+        </div>
+        
+        <div class="admin-dashboard" id="adminDashboard">
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalProducts">0</div>
+                    <div class="stat-label">Total Products</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalCategories">4</div>
+                    <div class="stat-label">Categories</div>
+                </div>
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('products')">Products</button>
+                <button class="admin-tab" onclick="switchAdminTab('orders')">Orders</button>
+                <button class="admin-tab" onclick="switchAdminTab('settings')">Settings</button>
+            </div>
+            
+            <div class="admin-tab-content active" id="productsTab">
+                <h3>Product Management</h3>
+                
+                <div class="admin-search">
+                    <input type="text" id="adminProductSearch" placeholder="Search products..." oninput="filterAdminProducts()">
+                </div>
+                
+                <div class="category-filter">
+                    <select id="adminCategoryFilter" onchange="filterAdminProducts()">
+                        <option value="all">All Categories</option>
+                        <option value="indian">Indian</option>
+                        <option value="exotic">Exotic</option>
+                        <option value="leafy">Leafy</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+                
+                <button class="checkout-btn" onclick="showAddProductForm()">
+                    <i class="fas fa-plus"></i> Add New Product
+                </button>
+                
+                <div class="product-list" id="adminProductList">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div class="add-product-form hidden" id="addProductForm">
+                    <h4>Add New Product</h4>
+                    <div class="form-group">
+                        <label for="newProductName">Product Name</label>
+                        <input type="text" id="newProductName" placeholder="Enter product name">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="newProductPrice">Price (₹)</label>
+                            <input type="number" id="newProductPrice" placeholder="Price">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="newProductUnit">Unit</label>
+                            <select id="newProductUnit">
+                                <option value="kg">kg</option>
+                                <option value="piece">piece</option>
+                                <option value="bunch">bunch</option>
+                                <option value="packet">packet</option>
+                                <option value="tin">tin</option>
+                                <option value="bottle">bottle</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProductCategory">Category</label>
+                        <select id="newProductCategory">
+                            <option value="indian">Indian</option>
+                            <option value="exotic">Exotic</option>
+                            <option value="leafy">Leafy</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newProductImage">Image URL</label>
+                        <input type="text" id="newProductImage" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-row">
+                        <button class="admin-btn save-btn" onclick="addNewProduct()">
+                            <i class="fas fa-save"></i> Save Product
+                        </button>
+                        <button class="admin-btn cancel-btn" onclick="hideAddProductForm()">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="edit-product-form hidden" id="editProductForm">
+                    <!-- Edit form will be loaded here dynamically -->
+                </div>
+            </div>
+            
+            <div class="admin-tab-content" id="ordersTab">
+                <h3>Order Management</h3>
+                <p>Order management functionality would go here.</p>
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart" style="font-size: 48px; color: #ddd; margin-bottom: 15px;"></i>
+                    <p>Order management system coming soon</p>
+                </div>
+            </div>
+            
+            <div class="admin-tab-content" id="settingsTab">
+                <h3>Settings</h3>
+                <p>Business settings and configuration would go here.</p>
+                <div class="form-group">
+                    <label for="businessName">Business Name</label>
+                    <input type="text" id="businessName" value="Sobji Haat">
+                </div>
+                <div class="form-group">
+                    <label for="deliveryFee">Delivery Fee (₹)</label>
+                    <input type="number" id="deliveryFee" value="20">
+                </div>
+                <button class="checkout-btn">Save Settings</button>
+            </div>
+            
+            <button class="back-to-home" onclick="adminLogout()" style="margin-top: 20px;">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
         </div>
     </div>
-    
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="Search products..." id="searchInput">
-        <i class="search-icon fas fa-search" id="searchIcon"></i>
-    </div>
-    
-    <div class="category-buttons">
-        <button class="category-btn active" data-category="indian">Indian</button>
-        <button class="category-btn" data-category="exotic">Exotic</button>
-        <button class="category-btn" data-category="leafy">Leafy</button>
-        <button class="category-btn" data-category="others">Others</button>
-    </div>
-    
-    <div class="products-container" id="productsContainer">
-        <!-- Products will be loaded here dynamically -->
-    </div>
-    
-    <div class="hero-image">
-        <img src="mission.jpg" alt="Fresh Vegetables">
-    </div>
-    
-    <button class="sticky-cart-btn" onclick="openCart()">
-        <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count" id="cartCount">0</span>
-    </button>
     
     <!-- Cart Modal -->
     <div class="cart-modal" id="cartModal">
@@ -779,9 +1570,7 @@
                     <label for="pincode">Pincode *</label>
                     <input type="text" id="pincode" required maxlength="6">
                 </div>
-                <div class="delivery-time">
-                    <i class="fas fa-clock"></i> Delivery in 45-60 minutes
-                </div>
+                
                 <div class="billing-details" id="billingSummary">
                     <!-- Billing summary will be loaded here -->
                 </div>
@@ -799,7 +1588,7 @@
                 <h2 class="modal-title">Special Offer!</h2>
                 <button class="close-modal" onclick="closeReviewOfferModal()">&times;</button>
             </div>
-            <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Special Offer" class="review-offer-image">
+            <img src="https://cdn.pixabay.com/photo/2015/05/04/10/16/vegetables-752153_1280.jpg" class="review-offer-image">
             <div class="offer-details">
                 <div class="offer-title">Get 5% Discount!</div>
                 <div class="offer-description">
@@ -821,12 +1610,6 @@
     <!-- Notification -->
     <div class="notification" id="notification"></div>
     
-    <footer>
-        <p>&copy; 2025 Sobji Haat. All rights reserved.</p>
-        <p>49/9 Jorabagan Road, Kolkata, West Bengal</p>
-        <p>Delivery in 45-60 minutes</p>
-    </footer>
-
     <script>
         // Business information
         const BUSINESS_INFO = {
@@ -837,101 +1620,122 @@
             facebook: "https://www.facebook.com/sobjihaat?mibextid=ZbWKwL",
             googleReview: "https://search.google.com/local/writereview?placeid=ChIJL6p5e5eWrjsR5Lr0-5a7JkQ",
             deliveryFee: 20,
-            deliveryTime: "45-60 minutes",
             servicePincodes: ["700001", "700002", "700003", "700004", "700005", "700006", "700007", "700008", "700009", "700010"]
         };
 
         // Product data with categories and images
         const PRODUCTS = {
             indian: [
-                { id: 1, name: "Lemon", price: 20, image: "https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
-                { id: 2, name: "Gondhoraj Lemon", price: 40, image: "https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
-                { id: 3, name: "Coconut", price: 50, image: "https://images.pexels.com/photos/7676718/pexels-photo-7676718.jpeg?auto=compress&cs=tinysrgb&w=500" },
-                { id: 4, name: "Banana Leaf", price: 10, image: "https://media.istockphoto.com/id/157479249/photo/green-banana-leaf-isolated-on-white-with-clipping-path.jpg?s=612x612&w=0&k=20&c=632RKhMCKgbb8w4ZT9yS7Iw3E2vsRM_L_GgTbVng7XI=" },
-                { id: 5, name: "Green Chilli", price: 30, image: "https://media.istockphoto.com/id/182837666/photo/green-chillis-for-sale-at-the-market.jpg?s=612x612&w=0&k=20&c=cI7UOIK8NEy6oRtxXIk_L3D1uyu937tBSJnKBwsNYts=" },
-                { id: 6, name: "Capsicum", price: 60, image: "https://media.istockphoto.com/id/137350104/photo/green-peppers.jpg?s=612x612&w=0&k=20&c=na41QxBRh1fFr-MFJWIYFDUU3GfVDEFbPd5KyrgexQg=" },
-                { id: 7, name: "Coriander Leaf", price: 15, image: "https://media.istockphoto.com/id/1133790325/photo/fresh-coriander-cilantro-leaves-on-basket.jpg?s=612x612&w=0&k=20&c=HpsqbfNQ_mb-lJbdqJvGpuUwFBYqfUPVWtL8KA7uHyw=" },
-                { id: 8, name: "Cabbage", price: 25, image: "https://cdn.pixabay.com/photo/2018/10/03/22/08/kohl-3722517_1280.jpg" },
-                { id: 9, name: "Beans", price: 40, image: "https://cdn.pixabay.com/photo/2015/05/11/03/58/green-beans-761940_1280.jpg" },
-                { id: 10, name: "Carrot", price: 35, image: "https://cdn.pixabay.com/photo/2016/07/11/00/18/carrots-1508847_1280.jpg" },
-                { id: 11, name: "Tamarind", price: 80, image: "https://cdn.pixabay.com/photo/2023/11/08/05/16/tamarind-8373925_1280.jpg" },
-                { id: 12, name: "Ginger", price: 120, image: "https://cdn.pixabay.com/photo/2020/04/29/12/39/ginger-5108759_1280.jpg" },
-                { id: 13, name: "Garlic Whole", price: 150, image: "https://cdn.pixabay.com/photo/2014/11/25/13/48/garlic-545223_1280.jpg" },
-                { id: 14, name: "Cucumber", price: 20, image: "https://usercontent1.hubstatic.com/14461774_f520.jpg" },
-                { id: 15, name: "Tomato", price: 30, image: "https://cdn.pixabay.com/photo/2019/07/11/10/14/cherry-tomato-4330441_1280.jpg" },
-                { id: 16, name: "Onion", price: 40, image: "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?w=500&h=500&fit=crop" },
-                { id: 17, name: "Chandramukhi Potato", price: 25, image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500&h=500&fit=crop" },
-                { id: 18, name: "Jyoti Potato", price: 30, image: "https://cdn.pixabay.com/photo/2017/02/19/02/40/potatoes-2078775_1280.jpg" },
-                { id: 19, name: "Beet Root", price: 35, image: "https://cdn.pixabay.com/photo/2018/06/22/13/52/beetroot-3490809_1280.jpg" },
-                { id: 20, name: "Spinach", price: 20, image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&h=500&fit=crop" },
-                { id: 21, name: "Papaya", price: 50, image: "https://cdn.pixabay.com/photo/2014/04/24/11/37/papaya-331273_1280.jpg" },
-                { id: 22, name: "Mustard Leaf", price: 25, image: "https://cdn.pixabay.com/photo/2015/10/05/09/48/blossom-972369_1280.jpg" }
+                { id: 1, name: "Lemon", price: 5, image: "https://images.unsplash.com/photo-1568569350062-ebfa3cb195df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60", unit: "piece" },
+                { id: 2, name: "Gondhoraj Lemon", price: 10, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "piece" },
+                { id: 3, name: "Coconut", price: 30, image: "https://images.pexels.com/photos/7676718/pexels-photo-7676718.jpeg?auto=compress&cs=tinysrgb&w=500", unit: "piece" },
+                { id: 4, name: "Banana Leaf", price: 5, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "piece" },
+                { id: 5, name: "Green Chilli", price: 30, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 6, name: "Capsicum", price: 60, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 7, name: "Coriander Leaf", price: 15, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 8, name: "Cabbage", price: 25, image: "https://cdn.pixabay.com/photo/2018/10/03/22/08/kohl-3722517_1280.jpg", unit: "kg" },
+                { id: 9, name: "Beans", price: 40, image: "https://cdn.pixabay.com/photo/2015/05/11/03/58/green-beans-761940_1280.jpg", unit: "kg" },
+                { id: 10, name: "Carrot", price: 35, image: "https://cdn.pixabay.com/photo/2016/07/11/00/18/carrots-1508847_1280.jpg", unit: "kg" },
+                { id: 11, name: "Tamarind", price: 80, image: "https://cdn.pixabay.com/photo/2023/11/08/05/16/tamarind-8373925_1280.jpg", unit: "kg" },
+                { id: 12, name: "Ginger", price: 120, image: "https://cdn.pixabay.com/photo/2020/04/29/12/39/ginger-5108759_1280.jpg", unit: "kg" },
+                { id: 13, name: "Garlic Whole", price: 150, image: "https://cdn.pixabay.com/photo/2014/11/25/13/48/garlic-545223_1280.jpg", unit: "kg" },
+                { id: 14, name: "Cucumber", price: 20, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 15, name: "Tomato", price: 30, image: "https://cdn.pixabay.com/photo/2019/07/11/10/14/cherry-tomato-4330441_1280.jpg", unit: "kg" },
+                { id: 16, name: "Onion", price: 40, image: "https://images.unsplash.com/photo-1580201092675-a0a6a6cafbb1?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 17, name: "Chandramukhi Potato", price: 25, image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 18, name: "Jyoti Potato", price: 30, image: "https://cdn.pixabay.com/photo/2017/02/19/02/40/potatoes-2078775_1280.jpg", unit: "kg" },
+                { id: 19, name: "Beet Root", price: 35, image: "https://cdn.pixabay.com/photo/2018/06/22/13/52/beetroot-3490809_1280.jpg", unit: "kg" },
+                { id: 20, name: "Spinach", price: 20, image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 21, name: "Papaya", price: 50, image: "https://cdn.pixabay.com/photo/2014/04/24/11/37/papaya-331273_1280.jpg", unit: "kg" },
+                { id: 22, name: "Mustard Leaf", price: 25, image: "https://cdn.pixabay.com/photo/2015/10/05/09/48/blossom-972369_1280.jpg", unit: "bunch" }
             ],
             exotic: [
-                { id: 23, name: "Bean Sprouts", price: 60, image: "https://cdn.pixabay.com/photo/2013/07/18/15/08/green-bean-bud-164652_1280.jpg" },
-                { id: 24, name: "Peeled Garlic", price: 200, image: "https://cdn.pixabay.com/photo/2020/06/21/01/28/garlic-5322921_1280.jpg" },
-                { id: 25, name: "Sweet Corn", price: 40, image: "https://cdn.pixabay.com/photo/2020/08/23/12/20/corn-5510709_1280.jpg" },
-                { id: 26, name: "Baby Corn", price: 80, image: "https://cdn.pixabay.com/photo/2024/08/20/14/40/corn-8983537_1280.jpg" },
-                { id: 27, name: "Bell Pepper", price: 120, image: "https://cdn.pixabay.com/photo/2014/10/22/21/54/bell-peppers-499068_1280.jpg" },
-                { id: 28, name: "Cherry Tomato", price: 100, image: "https://cdn.pixabay.com/photo/2018/08/21/19/48/tomatoes-3622009_1280.jpg" },
-                { id: 29, name: "Pakchoi", price: 60, image: "https://cdn.pixabay.com/photo/2020/03/21/12/26/vegetables-4953713_1280.jpg" },
-                { id: 30, name: "Button Mushroom", price: 150, image: "https://cdn.pixabay.com/photo/2016/04/25/01/57/mushrooms-1351060_1280.jpg" },
-                { id: 31, name: "English Cucumber", price: 50, image: "https://tse2.mm.bing.net/th/id/OIP.PxdYckDzdKRAtFXFoWOXDQHaE8?pid=Api&rs=1&c=1&qlt=95&w=165&h=110" },
-                { id: 32, name: "Zucchini", price: 70, image: "https://media.istockphoto.com/id/924389338/photo/close-up-of-fresh-ridge-gourd.jpg?s=612x612&w=0&k=20&c=fRfNJM1_1ZHIbjD-3t9zOf03uCRlNdYvrduHvvJC1Bc=" },
-                { id: 33, name: "Iceberg Lettuce", price: 40, image: "https://cdn.pixabay.com/photo/2018/06/29/07/26/salad-3505392_1280.jpg" },
-                { id: 34, name: "Chinese Cabbage", price: 45, image: "https://tse1.mm.bing.net/th/id/OIP.MZw4X5afHoWtzaqEKRHvpgHaHP?pid=Api&P=0&h=180" },
-                { id: 35, name: "Red Cabbage", price: 50, image: "https://cdn.pixabay.com/photo/2019/10/18/15/47/red-cabbage-4559494_1280.jpg" },
-                { id: 36, name: "Thai Ginger", price: 180, image: "https://cdn.pixabay.com/photo/2018/05/21/12/03/ginger-3418066_1280.jpg" },
-                { id: 37, name: "Lemon Grass", price: 60, image: "https://cdn.pixabay.com/photo/2015/01/27/23/16/lemon-614349_1280.jpg" },
-                { id: 38, name: "Mango Ginger", price: 200, image: "https://cdn.pixabay.com/photo/2019/01/31/10/59/ginger-3966502_1280.jpg" },
-                { id: 39, name: "Asparagus", price: 250, image: "https://cdn.pixabay.com/photo/2019/12/08/18/28/asparagus-4681835_1280.jpg" },
-                { id: 40, name: "Thyme", price: 100, image: "https://cdn.pixabay.com/photo/2013/06/01/03/07/thyme-115349_1280.jpg" },
-                { id: 41, name: "Rosemary", price: 120, image: "https://tse1.mm.bing.net/th/id/OIP.EXQJvVYiCY0CkdBteZrkdAHaFj?pid=Api&P=0&h=180" },
-                { id: 42, name: "Broccoli", price: 80, image: "https://cdn.pixabay.com/photo/2016/03/05/19/02/broccoli-1238250_1280.jpg" },
-                { id: 43, name: "Lotus Stem", price: 150, image: "https://cdn.pixabay.com/photo/2016/07/29/07/36/lotus-1550951_1280.jpg" }
+                { id: 23, name: "Red Cabbage", price: 50, image: "https://cdn.pixabay.com/photo/2019/10/18/15/47/red-cabbage-4559494_1280.jpg", unit: "piece" },
+                { id: 24, name: "Broccoli", price: 80, image: "https://cdn.pixabay.com/photo/2016/03/05/19/02/broccoli-1238250_1280.jpg", unit: "piece" },
+                { id: 25, name: "Bell Pepper", price: 120, image: "https://cdn.pixabay.com/photo/2014/10/22/21/54/bell-peppers-499068_1280.jpg", unit: "kg" },
+                { id: 26, name: "Cherry Tomato", price: 100, image: "https://cdn.pixabay.com/photo/2018/08/21/19/48/tomatoes-3622009_1280.jpg", unit: "kg" },
+                { id: 27, name: "Pakchoi", price: 60, image: "https://cdn.pixabay.com/photo/2020/03/21/12/26/vegetables-4953713_1280.jpg", unit: "kg" },
+                { id: 28, name: "Button Mushroom", price: 150, image: "https://cdn.pixabay.com/photo/2016/04/25/01/57/mushrooms-1351060_1280.jpg", unit: "kg" },
+                { id: 29, name: "Bean Sprouts", price: 60, image: "https://cdn.pixabay.com/photo/2013/07/18/15/08/green-bean-bud-164652_1280.jpg", unit: "kg" },
+                { id: 30, name: "Peeled Garlic", price: 200, image: "https://cdn.pixabay.com/photo/2020/06/21/01/28/garlic-5322921_1280.jpg", unit: "kg" },
+                { id: 31, name: "Sweet Corn", price: 40, image: "https://cdn.pixabay.com/photo/2020/08/23/12/20/corn-5510709_1280.jpg", unit: "kg" },
+                { id: 32, name: "English Cucumber", price: 50, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "piece" },
+                { id: 33, name: "Iceberg Lettuce", price: 40, image: "https://cdn.pixabay.com/photo/2018/06/29/07/26/salad-3505392_1280.jpg", unit: "piece" },
+                { id: 34, name: "Chinese Cabbage", price: 45, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 35, name: "Thai Ginger", price: 180, image: "https://cdn.pixabay.com/photo/2018/05/21/12/03/ginger-3418066_1280.jpg", unit: "kg" },
+                { id: 36, name: "Lemon Grass", price: 60, image: "https://cdn.pixabay.com/photo/2015/01/27/23/16/lemon-614349_1280.jpg", unit: "bunch" },
+                { id: 37, name: "Mango Ginger", price: 200, image: "https://cdn.pixabay.com/photo/2019/01/31/10/59/ginger-3966502_1280.jpg", unit: "kg" },
+                { id: 38, name: "Asparagus", price: 250, image: "https://cdn.pixabay.com/photo/2019/12/08/18/28/asparagus-4681835_1280.jpg", unit: "kg" },
+                { id: 39, name: "Thyme", price: 100, image: "https://cdn.pixabay.com/photo/2013/06/01/03/07/thyme-115349_1280.jpg", unit: "bunch" },
+                { id: 40, name: "Rosemary", price: 120, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 41, name: "Zucchini", price: 70, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "kg" },
+                { id: 42, name: "Lotus Stem", price: 150, image: "https://cdn.pixabay.com/photo/2016/07/29/07/36/lotus-1550951_1280.jpg", unit: "kg" }
             ],
             leafy: [
-                { id: 44, name: "Spring Onion", price: 30, image: "https://cdn.pixabay.com/photo/2017/04/04/17/59/vegetables-2202500_1280.jpg" },
-                { id: 45, name: "Garlic Leaf", price: 40, image: "https://cdn.pixabay.com/photo/2019/03/03/10/11/vegetables-4031508_1280.jpg" },
-                { id: 46, name: "Basil Leaf", price: 50, image: "https://tse1.mm.bing.net/th/id/OIP.xmd_Vs0Pblc7xJf1N41MjQHaFb?pid=Api&P=0&h=180" },
-                { id: 47, name: "Parsley", price: 60, image: "https://media.istockphoto.com/id/155157821/photo/parsley-bouquet.jpg?s=612x612&w=0&k=20&c=Utve-Yy1rUrz8xvitpWnIPfs_9d4-pMup-YRgBZJ6Y0=" },
-                { id: 48, name: "Leek", price: 70, image: "https://media.istockphoto.com/id/638286824/photo/raw-green-organic-leeks.jpg?s=612x612&w=0&k=20&c=18w__sx0gAch0-WuJWKj6rxzoQXz1mtcECWly18F8aM=" },
-                { id: 49, name: "Dill Leaf", price: 55, image: "https://tse3.mm.bing.net/th/id/OIP.Ijr3Omxf7As46HdaITPqkAHaE6?pid=Api&P=0&h=180" },
-                { id: 50, name: "Rocket Lettuce", price: 80, image: "https://tse3.mm.bing.net/th/id/OIP.LPfvBQvPS--NMAgjNxmhqAHaHa?pid=Api&P=0&h=180" },
-                { id: 51, name: "Mint", price: 25, image: "https://media.istockphoto.com/id/499696575/photo/as.jpg?s=612x612&w=0&k=20&c=EWK15g_qDBWKdPRQ3V9HUW0E3iy6wwMBc9SFv7t3XTk=" },
-                { id: 52, name: "Kale", price: 90, image: "https://media.gettyimages.com/id/1202296635/photo/top-view-of-bowl-of-kale-cutting-board-with-knife-and-chopped-kale.jpg?s=612x612&w=0&k=20&c=q1YQwyoZR18mD1lsS3VFs-v90rACdk5eTuH3eZ10URU=" },
-                { id: 53, name: "Celery Leaf", price: 45, image: "https://www.plantfoodathome.com/wp-content/uploads/2021/07/What-to-do-with-Celery-Leaves-Preserving-and-Recipe-Ideas.jpg" },
-                { id: 54, name: "Lemon Leaf", price: 20, image: "https://images.pexels.com/photos/10223092/pexels-photo-10223092.jpeg" },
-                { id: 55, name: "English Parsley", price: 65, image: "https://media.istockphoto.com/id/155157821/photo/parsley-bouquet.jpg?s=612x612&w=0&k=20&c=Utve-Yy1rUrz8xvitpWnIPfs_9d4-pMup-YRgBZJ6Y0=" },
-                { id: 56, name: "Lettuce", price: 35, image: "https://media.istockphoto.com/id/181072765/photo/lettuce-isolated-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=HmCTYJjqzyH7PmzbMGToa9qkqewYx4e2tJRfelR0feY=" },
-                { id: 57, name: "Curry Leaf", price: 15, image: "https://media.istockphoto.com/id/136146217/photo/curry-leaves.jpg?s=612x612&w=0&k=20&c=XIDBy7R5UISwq0svXe5vtolIIjn0-hTBhRQWhVggA6k=" }
+                { id: 43, name: "Spring Onion", price: 30, image: "https://cdn.pixabay.com/photo/2017/04/04/17/59/vegetables-2202500_1280.jpg", unit: "bunch" },
+                { id: 44, name: "Garlic Leaf", price: 40, image: "https://cdn.pixabay.com/photo/2019/03/03/10/11/vegetables-4031508_1280.jpg", unit: "bunch" },
+                { id: 45, name: "Basil Leaf", price: 50, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 46, name: "Parsley", price: 60, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 47, name: "Leek", price: 70, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 48, name: "Dill Leaf", price: 55, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 49, name: "Rocket Lettuce", price: 80, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 50, name: "Mint", price: 25, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 51, name: "Kale", price: 90, image: "https://media.gettyimages.com/id/1202296635/photo/top-view-of-bowl-of-kale-cutting-board-with-knife-and-chopped-kale.jpg?s=612x612&w=0&k=20&c=q1YQwyoZR18mD1lsS3VFs-v90rACdk5eTuH3eZ10URU=", unit: "bunch" },
+                { id: 52, name: "Celery Leaf", price: 45, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 53, name: "Lemon Leaf", price: 20, image: "https://images.pexels.com/photos/10223092/pexels-photo-10223092.jpeg", unit: "bunch" },
+                { id: 54, name: "English Parsley", price: 65, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 55, name: "Lettuce", price: 35, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" },
+                { id: 56, name: "Curry Leaf", price: 15, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bunch" }
             ],
             others: [
-                { id: 58, name: "Baby Corn", price: 80, image: "https://up.yimg.com/ib/th/id/OIP.0D6ObD57Au3fZLWjTgx7ewHaE8?pid=Api&rs=1&c=1&qlt=95&w=165&h=110" },
-                { id: 59, name: "Sweet Corn", price: 40, image: "https://up.yimg.com/ib/th/id/OIP.92hkQIBcAApMHg-IzOxfgwHaJG?pid=Api&rs=1&c=1&qlt=95&w=95&h=117" },
-                { id: 60, name: "Mushroom", price: 150, image: "https://tse4.mm.bing.net/th/id/OIP.BHFGNiAgVRLxOD490A2w2gHaHa?pid=Api&P=0&h=180" },
-                { id: 61, name: "Pineapple Slice", price: 60, image: "https://sp.yimg.com/ib/th/id/OIP.Qma0uEOgp7-v1MUZK3Bj3AHaHa?pid=Api&w=148&h=148&c=7&dpr=2&rs=1" },
-                { id: 62, name: "Fruit Cocktail", price: 120, image: "https://up.yimg.com/ib/th/id/OIP.2porueIPAL6p5e6BvXD8MgHaE7?pid=Api&rs=1&c=1&qlt=95&w=170&h=113" },
-                { id: 63, name: "Rice Wine", price: 200, image: "https://s.yimg.com/fz/api/res/1.2/qsY8KC8_hPAYcqaaPW_dmA--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpdDtoPTI2MDtxPTgwO3c9MzMy/https://s.yimg.com/zb/imgv1/30a0c68b-e6ce-37f9-923b-e182365ff5d1/t_500x300" },
-                { id: 64, name: "Green Peas", price: 50, image: "https://tiimg.tistatic.com/fp/1/005/736/packed-roasted-green-pea-864.jpg" },
-                { id: 65, name: "French Fries", price: 80, image: "https://up.yimg.com/ib/th/id/OIP.InKrIqmrEfj9tcMQQTG0IAHaHa?pid=Api&rs=1&c=1&qlt=95&w=105&h=105" },
-                { id: 66, name: "Panko Bread Crumb", price: 100, image: "https://tse2.mm.bing.net/th/id/OIP.ZX1lQDdCFUB0y6dq7DC8AQHaKa?pid=Api&P=0&h=180" },
-                { id: 67, name: "Tomato Puree", price: 70, image: "https://images.pexels.com/photos/3832360/pexels-photo-3832360.jpeg" }
+                { id: 57, name: "Green Peas", price: 50, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "packet" },
+                { id: 58, name: "French Fries", price: 80, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "packet" },
+                { id: 59, name: "Panko Bread Crumb", price: 100, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "packet" },
+                { id: 60, name: "Tomato Puree", price: 70, image: "https://images.pexels.com/photos/3832360/pexels-photo-3832360.jpeg", unit: "tin" },
+                { id: 61, name: "Mushroom", price: 150, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "tin" },
+                { id: 62, name: "Pineapple Slice", price: 60, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "tin" },
+                { id: 63, name: "Fruit Cocktail", price: 120, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "tin" },
+                { id: 64, name: "Rice Wine", price: 200, image: "https://images.unsplash.com/photo-1590502593741-81c2c5e23654?w=500&h=500&fit=crop", unit: "bottle" }
             ]
         };
 
-        // Quantity options in grams
-        const QUANTITY_OPTIONS = [
-            { label: "250g", value: 0.25 },
-            { label: "500g", value: 0.5 },
-            { label: "1kg", value: 1 },
-            { label: "2kg", value: 2 }
-        ];
+        // Quantity options based on product type
+        const getQuantityOptions = (unit) => {
+            switch(unit) {
+                case 'piece':
+                case 'bunch':
+                case 'packet':
+                case 'tin':
+                case 'bottle':
+                    return [
+                        { label: "1", value: 1 },
+                        { label: "2", value: 2 },
+                        { label: "3", value: 3 },
+                        { label: "4", value: 4 }
+                    ];
+                case 'kg':
+                    return [
+                        { label: "250g", value: 0.25 },
+                        { label: "500g", value: 0.5 },
+                        { label: "1kg", value: 1 },
+                        { label: "2kg", value: 2 }
+                    ];
+                default:
+                    return [
+                        { label: "250g", value: 0.25 },
+                        { label: "500g", value: 0.5 },
+                        { label: "1kg", value: 1 },
+                        { label: "2kg", value: 2 }
+                    ];
+            }
+        };
 
         // Cart state
         let cart = [];
         let currentCategory = 'indian';
         let selectedQuantities = {};
+        let productsVisible = true;
+        let editingProductId = null;
 
         // DOM elements
         const productsContainer = document.getElementById('productsContainer');
@@ -942,11 +1746,320 @@
         const searchInput = document.getElementById('searchInput');
         const searchIcon = document.getElementById('searchIcon');
         const categoryButtons = document.querySelectorAll('.category-btn');
+        const categoryImages = document.querySelectorAll('.category-image');
         const checkoutModal = document.getElementById('checkoutModal');
         const checkoutForm = document.getElementById('checkoutForm');
         const billingSummary = document.getElementById('billingSummary');
         const reviewOfferModal = document.getElementById('reviewOfferModal');
         const notification = document.getElementById('notification');
+
+        // Page navigation functions
+        function showHomePage() {
+            document.querySelector('.main-app').style.display = 'block';
+            document.getElementById('aboutPage').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+        
+        function showAboutPage() {
+            document.querySelector('.main-app').style.display = 'none';
+            document.getElementById('aboutPage').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+        
+        function showAdminPanel() {
+            document.querySelector('.main-app').style.display = 'none';
+            document.getElementById('aboutPage').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+        }
+        
+        // Admin functionality
+        function adminLogin() {
+            const username = document.getElementById('adminUsername').value;
+            const password = document.getElementById('adminPassword').value;
+            
+            // Simple authentication (in a real app, this would be more secure)
+            if (username === 'admin' && password === 'password') {
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminDashboard').style.display = 'block';
+                loadAdminProducts();
+                updateAdminStats();
+                showNotification('Admin login successful');
+            } else {
+                showNotification('Invalid credentials', 'error');
+            }
+        }
+        
+        function adminLogout() {
+            document.getElementById('adminLogin').style.display = 'block';
+            document.getElementById('adminDashboard').style.display = 'none';
+            document.getElementById('adminUsername').value = '';
+            document.getElementById('adminPassword').value = '';
+            showAboutPage();
+        }
+        
+        function switchAdminTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.admin-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        function updateAdminStats() {
+            let totalProducts = 0;
+            for (const category in PRODUCTS) {
+                totalProducts += PRODUCTS[category].length;
+            }
+            document.getElementById('totalProducts').textContent = totalProducts;
+        }
+        
+        function loadAdminProducts() {
+            const productList = document.getElementById('adminProductList');
+            productList.innerHTML = '';
+            
+            // Loop through all categories and products
+            for (const category in PRODUCTS) {
+                PRODUCTS[category].forEach(product => {
+                    const productItem = document.createElement('div');
+                    productItem.className = 'admin-product-item';
+                    productItem.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="admin-product-image">
+                        <div class="admin-product-info">
+                            <div class="admin-product-name">${product.name}</div>
+                            <div class="admin-product-details">
+                                ₹${product.price} / ${product.unit} | ${category.charAt(0).toUpperCase() + category.slice(1)}
+                            </div>
+                        </div>
+                        <div class="admin-product-actions">
+                            <button class="admin-btn edit-btn" onclick="editProduct(${product.id})">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="admin-btn delete-btn" onclick="deleteProduct(${product.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    productList.appendChild(productItem);
+                });
+            }
+            
+            updateAdminStats();
+        }
+        
+        function filterAdminProducts() {
+            const searchTerm = document.getElementById('adminProductSearch').value.toLowerCase();
+            const categoryFilter = document.getElementById('adminCategoryFilter').value;
+            const productItems = document.querySelectorAll('.admin-product-item');
+            
+            productItems.forEach(item => {
+                const productName = item.querySelector('.admin-product-name').textContent.toLowerCase();
+                const productCategory = item.querySelector('.admin-product-details').textContent.toLowerCase();
+                
+                const matchesSearch = productName.includes(searchTerm);
+                const matchesCategory = categoryFilter === 'all' || productCategory.includes(categoryFilter);
+                
+                if (matchesSearch && matchesCategory) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        function showAddProductForm() {
+            document.getElementById('addProductForm').classList.remove('hidden');
+            document.getElementById('editProductForm').classList.add('hidden');
+            editingProductId = null;
+        }
+        
+        function hideAddProductForm() {
+            document.getElementById('addProductForm').classList.add('hidden');
+            // Clear form fields
+            document.getElementById('newProductName').value = '';
+            document.getElementById('newProductPrice').value = '';
+            document.getElementById('newProductImage').value = '';
+        }
+        
+        function addNewProduct() {
+            const name = document.getElementById('newProductName').value;
+            const price = parseFloat(document.getElementById('newProductPrice').value);
+            const category = document.getElementById('newProductCategory').value;
+            const unit = document.getElementById('newProductUnit').value;
+            const image = document.getElementById('newProductImage').value || 'https://via.placeholder.com/150';
+            
+            if (!name || !price || !category) {
+                showNotification('Please fill all required fields', 'error');
+                return;
+            }
+            
+            // Generate a new ID
+            const newId = Math.max(...Object.values(PRODUCTS).flat().map(p => p.id)) + 1;
+            
+            // Add the new product
+            PRODUCTS[category].push({
+                id: newId,
+                name: name,
+                price: price,
+                image: image,
+                unit: unit
+            });
+            
+            // Reload admin products
+            loadAdminProducts();
+            
+            // Hide the form
+            hideAddProductForm();
+            
+            showNotification('Product added successfully');
+        }
+        
+        function editProduct(productId) {
+            // Find the product
+            let product = null;
+            let productCategory = null;
+            
+            for (const category in PRODUCTS) {
+                const foundProduct = PRODUCTS[category].find(p => p.id === productId);
+                if (foundProduct) {
+                    product = foundProduct;
+                    productCategory = category;
+                    break;
+                }
+            }
+            
+            if (!product) return;
+            
+            // Hide add form and show edit form
+            document.getElementById('addProductForm').classList.add('hidden');
+            
+            const editForm = document.getElementById('editProductForm');
+            editForm.classList.remove('hidden');
+            editForm.innerHTML = `
+                <h4>Edit Product: ${product.name}</h4>
+                <div class="form-group">
+                    <label for="editProductName">Product Name</label>
+                    <input type="text" id="editProductName" value="${product.name}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="flex: 1;">
+                        <label for="editProductPrice">Price (₹)</label>
+                        <input type="number" id="editProductPrice" value="${product.price}">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label for="editProductUnit">Unit</label>
+                        <select id="editProductUnit">
+                            <option value="kg" ${product.unit === 'kg' ? 'selected' : ''}>kg</option>
+                            <option value="piece" ${product.unit === 'piece' ? 'selected' : ''}>piece</option>
+                            <option value="bunch" ${product.unit === 'bunch' ? 'selected' : ''}>bunch</option>
+                            <option value="packet" ${product.unit === 'packet' ? 'selected' : ''}>packet</option>
+                            <option value="tin" ${product.unit === 'tin' ? 'selected' : ''}>tin</option>
+                            <option value="bottle" ${product.unit === 'bottle' ? 'selected' : ''}>bottle</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editProductCategory">Category</label>
+                    <select id="editProductCategory">
+                        <option value="indian" ${productCategory === 'indian' ? 'selected' : ''}>Indian</option>
+                        <option value="exotic" ${productCategory === 'exotic' ? 'selected' : ''}>Exotic</option>
+                        <option value="leafy" ${productCategory === 'leafy' ? 'selected' : ''}>Leafy</option>
+                        <option value="others" ${productCategory === 'others' ? 'selected' : ''}>Others</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editProductImage">Image URL</label>
+                    <input type="text" id="editProductImage" value="${product.image}">
+                </div>
+                <div class="form-row">
+                    <button class="admin-btn save-btn" onclick="saveProductEdit(${productId})">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                    <button class="admin-btn cancel-btn" onclick="cancelEdit()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            `;
+            
+            editingProductId = productId;
+        }
+        
+        function saveProductEdit(productId) {
+            const name = document.getElementById('editProductName').value;
+            const price = parseFloat(document.getElementById('editProductPrice').value);
+            const category = document.getElementById('editProductCategory').value;
+            const unit = document.getElementById('editProductUnit').value;
+            const image = document.getElementById('editProductImage').value;
+            
+            if (!name || !price || !category) {
+                showNotification('Please fill all required fields', 'error');
+                return;
+            }
+            
+            // Find and update the product
+            for (const cat in PRODUCTS) {
+                const index = PRODUCTS[cat].findIndex(p => p.id === productId);
+                if (index !== -1) {
+                    // Remove from old category if category changed
+                    if (cat !== category) {
+                        const product = PRODUCTS[cat].splice(index, 1)[0];
+                        product.name = name;
+                        product.price = price;
+                        product.unit = unit;
+                        product.image = image;
+                        PRODUCTS[category].push(product);
+                    } else {
+                        // Update in same category
+                        PRODUCTS[cat][index].name = name;
+                        PRODUCTS[cat][index].price = price;
+                        PRODUCTS[cat][index].unit = unit;
+                        PRODUCTS[cat][index].image = image;
+                    }
+                    break;
+                }
+            }
+            
+            // Reload admin products
+            loadAdminProducts();
+            
+            // Hide the edit form
+            document.getElementById('editProductForm').classList.add('hidden');
+            editingProductId = null;
+            
+            showNotification('Product updated successfully');
+        }
+        
+        function cancelEdit() {
+            document.getElementById('editProductForm').classList.add('hidden');
+            editingProductId = null;
+        }
+        
+        function deleteProduct(productId) {
+            if (!confirm('Are you sure you want to delete this product?')) {
+                return;
+            }
+            
+            // Find and remove the product
+            for (const category in PRODUCTS) {
+                const index = PRODUCTS[category].findIndex(p => p.id === productId);
+                if (index !== -1) {
+                    PRODUCTS[category].splice(index, 1);
+                    break;
+                }
+            }
+            
+            loadAdminProducts();
+            showNotification('Product deleted successfully');
+        }
 
         // Initialize the app
         document.addEventListener('DOMContentLoaded', function() {
@@ -958,6 +2071,9 @@
             setTimeout(() => {
                 showReviewOfferModal();
             }, 2000);
+            
+            // Initialize reviews slider
+            initReviewsSlider();
         });
 
         // Set up event listeners
@@ -966,11 +2082,10 @@
             categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const category = this.getAttribute('data-category');
-                    setActiveCategory(category);
-                    loadProducts(category);
+                    toggleCategory(category);
                 });
             });
-
+         
             // Search functionality
             searchInput.addEventListener('input', function() {
                 filterProducts(this.value);
@@ -1028,14 +2143,39 @@
             }
         }
 
+        // Toggle category and product visibility
+        function toggleCategory(category) {
+            // If clicking the same category, toggle product visibility
+            if (category === currentCategory) {
+                productsVisible = !productsVisible;
+                productsContainer.style.display = productsVisible ? 'grid' : 'none';
+            } else {
+                // If clicking a different category, show products and switch category
+                productsVisible = true;
+                productsContainer.style.display = 'grid';
+                setActiveCategory(category);
+                loadProducts(category);
+            }
+        }
+
         // Set active category
         function setActiveCategory(category) {
+            // Update category buttons
             categoryButtons.forEach(button => {
                 button.classList.remove('active');
                 if (button.getAttribute('data-category') === category) {
                     button.classList.add('active');
                 }
             });
+            
+            // Update category images
+            categoryImages.forEach(image => {
+                image.classList.remove('active');
+                if (image.getAttribute('data-category') === category) {
+                    image.classList.add('active');
+                }
+            });
+            
             currentCategory = category;
         }
 
@@ -1045,23 +2185,26 @@
             productsContainer.innerHTML = '';
             
             products.forEach(product => {
+                const quantityOptions = getQuantityOptions(product.unit);
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                     <img src="${product.image}" alt="${product.name}" class="product-image">
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
-                        <div class="product-price">₹${product.price}/kg</div>
+                        <div class="product-price">₹${product.price}<span class="unit-display">/${product.unit}</span></div>
                         <div class="quantity-selector">
                             <div class="quantity-options" id="quantity-options-${product.id}">
-                                ${QUANTITY_OPTIONS.map(option => `
+                                ${quantityOptions.map(option => `
                                     <div class="quantity-option" data-value="${option.value}" data-product="${product.id}">${option.label}</div>
                                 `).join('')}
                             </div>
+                            ${product.unit === 'kg' ? `
                             <div class="custom-quantity">
                                 <input type="number" class="custom-quantity-input" id="custom-quantity-${product.id}" placeholder="Custom" min="0.5" step="0.5" oninput="validateNumberInput(this)">
                                 <span class="custom-quantity-unit">kg</span>
                             </div>
+                            ` : ''}
                         </div>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
                     </div>
@@ -1072,39 +2215,46 @@
             // Add event listeners to quantity options
             products.forEach(product => {
                 const optionsContainer = document.getElementById(`quantity-options-${product.id}`);
-                const options = optionsContainer.querySelectorAll('.quantity-option');
-                const customInput = document.getElementById(`custom-quantity-${product.id}`);
-                
-                options.forEach(option => {
-                    option.addEventListener('click', function() {
-                        // Remove active class from all options
-                        options.forEach(opt => opt.classList.remove('active'));
-                        
-                        // Add active class to clicked option
-                        this.classList.add('active');
-                        
-                        // Store selected quantity
-                        const quantity = parseFloat(this.getAttribute('data-value'));
-                        selectedQuantities[product.id] = quantity;
-                        
-                        // Clear custom input
-                        customInput.value = '';
+                if (optionsContainer) {
+                    const options = optionsContainer.querySelectorAll('.quantity-option');
+                    
+                    options.forEach(option => {
+                        option.addEventListener('click', function() {
+                            // Remove active class from all options
+                            options.forEach(opt => opt.classList.remove('active'));
+                            
+                            // Add active class to clicked option
+                            this.classList.add('active');
+                            
+                            // Store selected quantity
+                            const quantity = parseFloat(this.getAttribute('data-value'));
+                            selectedQuantities[product.id] = quantity;
+                            
+                            // Clear custom input if exists
+                            const customInput = document.getElementById(`custom-quantity-${product.id}`);
+                            if (customInput) {
+                                customInput.value = '';
+                            }
+                        });
                     });
-                });
-                
-                // Add event listener for custom input
-                customInput.addEventListener('input', function() {
-                    const customValue = parseFloat(this.value);
-                    if (!isNaN(customValue) && customValue > 0) {
-                        // Remove active class from all preset options
-                        options.forEach(opt => opt.classList.remove('active'));
-                        
-                        // Store custom quantity
-                        selectedQuantities[product.id] = customValue;
-                    } else {
-                        selectedQuantities[product.id] = 0;
+                    
+                    // Add event listener for custom input if exists
+                    const customInput = document.getElementById(`custom-quantity-${product.id}`);
+                    if (customInput) {
+                        customInput.addEventListener('input', function() {
+                            const customValue = parseFloat(this.value);
+                            if (!isNaN(customValue) && customValue > 0) {
+                                // Remove active class from all preset options
+                                options.forEach(opt => opt.classList.remove('active'));
+                                
+                                // Store custom quantity
+                                selectedQuantities[product.id] = customValue;
+                            } else {
+                                selectedQuantities[product.id] = 0;
+                            }
+                        });
                     }
-                });
+                }
             });
         }
 
@@ -1138,23 +2288,26 @@
             productsContainer.innerHTML = '';
             
             filteredProducts.forEach(product => {
+                const quantityOptions = getQuantityOptions(product.unit);
                 const productCard = document.createElement('div');
                 productCard.className = 'product-card';
                 productCard.innerHTML = `
                     <img src="${product.image}" alt="${product.name}" class="product-image">
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
-                        <div class="product-price">₹${product.price}/kg</div>
+                        <div class="product-price">₹${product.price}<span class="unit-display">/${product.unit}</span></div>
                         <div class="quantity-selector">
                             <div class="quantity-options" id="quantity-options-${product.id}">
-                                ${QUANTITY_OPTIONS.map(option => `
+                                ${quantityOptions.map(option => `
                                     <div class="quantity-option" data-value="${option.value}" data-product="${product.id}">${option.label}</div>
                                 `).join('')}
                             </div>
+                            ${product.unit === 'kg' ? `
                             <div class="custom-quantity">
                                 <input type="number" class="custom-quantity-input" id="custom-quantity-${product.id}" placeholder="Custom" min="0.5" step="0.5" oninput="validateNumberInput(this)">
                                 <span class="custom-quantity-unit">kg</span>
                             </div>
+                            ` : ''}
                         </div>
                         <button class="add-to-cart" onclick="addToCart(${product.id})">Add to Cart</button>
                     </div>
@@ -1165,39 +2318,45 @@
             // Add event listeners to quantity options for filtered products
             filteredProducts.forEach(product => {
                 const optionsContainer = document.getElementById(`quantity-options-${product.id}`);
-                const options = optionsContainer.querySelectorAll('.quantity-option');
-                const customInput = document.getElementById(`custom-quantity-${product.id}`);
-                
-                options.forEach(option => {
-                    option.addEventListener('click', function() {
-                        // Remove active class from all options
-                        options.forEach(opt => opt.classList.remove('active'));
-                        
-                        // Add active class to clicked option
-                        this.classList.add('active');
-                        
-                        // Store selected quantity
-                        const quantity = parseFloat(this.getAttribute('data-value'));
-                        selectedQuantities[product.id] = quantity;
-                        
-                        // Clear custom input
-                        customInput.value = '';
+                if (optionsContainer) {
+                    const options = optionsContainer.querySelectorAll('.quantity-option');
+                    const customInput = document.getElementById(`custom-quantity-${product.id}`);
+                    
+                    options.forEach(option => {
+                        option.addEventListener('click', function() {
+                            // Remove active class from all options
+                            options.forEach(opt => opt.classList.remove('active'));
+                            
+                            // Add active class to clicked option
+                            this.classList.add('active');
+                            
+                            // Store selected quantity
+                            const quantity = parseFloat(this.getAttribute('data-value'));
+                            selectedQuantities[product.id] = quantity;
+                            
+                            // Clear custom input if exists
+                            if (customInput) {
+                                customInput.value = '';
+                            }
+                        });
                     });
-                });
-                
-                // Add event listener for custom input
-                customInput.addEventListener('input', function() {
-                    const customValue = parseFloat(this.value);
-                    if (!isNaN(customValue) && customValue > 0) {
-                        // Remove active class from all preset options
-                        options.forEach(opt => opt.classList.remove('active'));
-                        
-                        // Store custom quantity
-                        selectedQuantities[product.id] = customValue;
-                    } else {
-                        selectedQuantities[product.id] = 0;
+                    
+                    // Add event listener for custom input if exists
+                    if (customInput) {
+                        customInput.addEventListener('input', function() {
+                            const customValue = parseFloat(this.value);
+                            if (!isNaN(customValue) && customValue > 0) {
+                                // Remove active class from all preset options
+                                options.forEach(opt => opt.classList.remove('active'));
+                                
+                                // Store custom quantity
+                                selectedQuantities[product.id] = customValue;
+                            } else {
+                                selectedQuantities[product.id] = 0;
+                            }
+                        });
                     }
-                });
+                }
             });
         }
 
@@ -1232,7 +2391,8 @@
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    quantity: quantity
+                    quantity: quantity,
+                    unit: product.unit
                 });
             }
             
@@ -1295,12 +2455,12 @@
                 cartItem.innerHTML = `
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">₹${item.price}/kg × ${item.quantity}kg = ₹${itemTotal.toFixed(2)}</div>
+                        <div class="cart-item-price">₹${item.price}/${item.unit} × ${item.quantity}${getUnitDisplay(item.unit)} = ₹${itemTotal.toFixed(2)}</div>
                     </div>
                     <div class="cart-item-actions">
-                        <button class="quantity-btn minus" onclick="updateCartItemQuantity(${item.id}, -0.5)">-</button>
-                        <span class="quantity">${item.quantity}kg</span>
-                        <button class="quantity-btn plus" onclick="updateCartItemQuantity(${item.id}, 0.5)">+</button>
+                        <button class="quantity-btn minus" onclick="updateCartItemQuantity(${item.id}, -${getQuantityStep(item.unit)})">-</button>
+                        <span class="quantity">${item.quantity}${getUnitDisplay(item.unit)}</span>
+                        <button class="quantity-btn plus" onclick="updateCartItemQuantity(${item.id}, ${getQuantityStep(item.unit)})">+</button>
                         <button class="quantity-btn remove" onclick="removeFromCart(${item.id})" style="background: #e74c3c;">
                             <i class="fas fa-trash"></i>
                         </button>
@@ -1326,6 +2486,38 @@
                     <span>₹${total.toFixed(2)}</span>
                 </div>
             `;
+        }
+
+        // Get unit display for cart
+        function getUnitDisplay(unit) {
+            switch(unit) {
+                case 'piece':
+                case 'bunch':
+                case 'packet':
+                case 'tin':
+                case 'bottle':
+                    return '';
+                case 'kg':
+                    return 'kg';
+                default:
+                    return '';
+            }
+        }
+
+        // Get quantity step based on unit
+        function getQuantityStep(unit) {
+            switch(unit) {
+                case 'piece':
+                case 'bunch':
+                case 'packet':
+                case 'tin':
+                case 'bottle':
+                    return 1;
+                case 'kg':
+                    return 0.5;
+                default:
+                    return 1;
+            }
         }
 
         // Update cart item quantity
@@ -1382,7 +2574,7 @@
                 <h3>Order Summary</h3>
                 ${cart.map(item => `
                     <div class="billing-row">
-                        <span>${item.name} (${item.quantity}kg)</span>
+                        <span>${item.name} (${item.quantity}${getUnitDisplay(item.unit)})</span>
                         <span>₹${(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                 `).join('')}
@@ -1478,7 +2670,6 @@
             message += `Phone: ${phone}\n`;
             message += `Address: ${address}\n`;
             message += `Pincode: ${pincode}\n`;
-            message += `Delivery Time: ${BUSINESS_INFO.deliveryTime}\n`;
             message += `Payment: Cash on Delivery\n\n`;
             message += `*Order Items:*\n`;
             
@@ -1486,14 +2677,14 @@
             cart.forEach(item => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-                message += `• ${item.name} - ${item.quantity}kg × ₹${item.price} = ₹${itemTotal.toFixed(2)}\n`;
+                message += `• ${item.name} - ${item.quantity}${getUnitDisplay(item.unit)} × ₹${item.price} = ₹${itemTotal.toFixed(2)}\n`;
             });
             
             message += `\n*Order Summary:*\n`;
             message += `Subtotal: ₹${subtotal.toFixed(2)}\n`;
             message += `Delivery Fee: ₹${BUSINESS_INFO.deliveryFee}\n`;
             message += `*Total: ₹${(subtotal + BUSINESS_INFO.deliveryFee).toFixed(2)}*\n\n`;
-            message += `Please confirm order and expected delivery time. Thank you!`;
+            message += `Please confirm order . Thank you!`;
             
             // Encode message for URL
             const encodedMessage = encodeURIComponent(message);
@@ -1538,6 +2729,54 @@
             setTimeout(() => {
                 notification.style.display = 'none';
             }, 3000);
+        }
+
+        // Initialize reviews slider
+        function initReviewsSlider() {
+            const slider = document.getElementById('reviewSlider');
+            const dotsContainer = document.getElementById('reviewDots');
+            const slides = slider.children;
+            let currentIndex = 0;
+
+            // Create dots
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('span');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateSlider();
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            function updateSlider() {
+                const offset = -currentIndex * (slides[0].offsetWidth + 20); // card width + gap
+                slider.style.transform = `translateX(${offset}px)`;
+                Array.from(dotsContainer.children).forEach((dot, i) => {
+                    dot.classList.toggle('active', i === currentIndex);
+                });
+            }
+
+            // Auto-scroll
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % slides.length;
+                updateSlider();
+            }, 4000);
+
+            // Happy customer counter
+            const countElem = document.getElementById('happyCount');
+            let count = 0;
+            const target = 1200; // Example happy customers
+            const increment = Math.ceil(target / 100);
+
+            function countUp() {
+                if (count < target) {
+                    count += increment;
+                    countElem.textContent = count > target ? target : count;
+                    requestAnimationFrame(countUp);
+                }
+            }
+            countUp();
         }
 
         // Social media functions
